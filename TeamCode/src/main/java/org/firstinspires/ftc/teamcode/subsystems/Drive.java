@@ -3,6 +3,11 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
+import org.firstinspires.ftc.teamcode.Constants;
+
+
 public class Drive {
 
     private DcMotor mLFDrive;
@@ -58,11 +63,30 @@ public class Drive {
         mRFDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         mRBDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        // positive speed moves left
         mLFDrive.setPower(speed);
         mLBDrive.setPower(-speed);
         mRFDrive.setPower(-speed);
         mRBDrive.setPower(speed);
+    }
+
+    /**
+     * Drives straight to a position with encoders.
+     * @param position the target encoder position
+     * @param power the power of the motors, in the range [0.0, 1.0]
+     * @return true if the robot is still moving towards the target, false if the robot is at the target
+     */
+    public boolean move(int position, double power) {
+        int currentPosition = mLFDrive.getCurrentPosition();
+
+        double speed = currentPosition < position ? power : -power;
+
+        if(Math.abs(currentPosition - position) > Constants.kEncoderMargin) {
+            move(speed, speed);
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -75,11 +99,18 @@ public class Drive {
         mRBDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
-
     /**
      * Soft stops the drive train.
      */
     public void stop() {
         move(0.0, 0.0);
+    }
+
+    /**
+     * Adds debug values to the telemetry.
+     * @param telemetry the current telemetry
+     */
+    public void debug(Telemetry telemetry) {
+
     }
 }

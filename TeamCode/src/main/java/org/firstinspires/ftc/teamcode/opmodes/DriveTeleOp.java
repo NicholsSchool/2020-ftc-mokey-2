@@ -54,6 +54,8 @@ public class DriveTeleOp extends OpMode
             Robot.drive.move(lSpeed, rSpeed);
         }
         //
+
+        Robot.imu.debug(telemetry);
     }
 
     /*
