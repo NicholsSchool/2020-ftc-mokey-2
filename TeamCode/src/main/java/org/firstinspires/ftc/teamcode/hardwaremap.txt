@@ -1,0 +1,6 @@
+Expansion Hub 2
+    Motors
+        0 lFDrive
+        1 lBDrive
+        2 rFDrive
+        3 rBDrive

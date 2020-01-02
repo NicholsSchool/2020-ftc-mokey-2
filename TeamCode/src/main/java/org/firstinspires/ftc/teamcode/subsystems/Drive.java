@@ -1,0 +1,85 @@
+package org.firstinspires.ftc.teamcode.subsystems;
+
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
+public class Drive {
+
+    private DcMotor mLFDrive;
+    private DcMotor mLBDrive;
+    private DcMotor mRFDrive;
+    private DcMotor mRBDrive;
+
+    /**
+     * Creates a drive train with the default state at the beginning of an OpMode.
+     * @param hardwareMap the hardware map of Mokey 2
+     */
+    public Drive(HardwareMap hardwareMap) {
+        mLFDrive = hardwareMap.get(DcMotor.class, "lFDrive");
+        mLBDrive = hardwareMap.get(DcMotor.class, "lBDrive");
+        mRFDrive = hardwareMap.get(DcMotor.class, "rFDrive");
+        mRBDrive = hardwareMap.get(DcMotor.class, "rBDrive");
+
+        mLFDrive.resetDeviceConfigurationForOpMode();
+        mLBDrive.resetDeviceConfigurationForOpMode();
+        mRFDrive.resetDeviceConfigurationForOpMode();
+        mRBDrive.resetDeviceConfigurationForOpMode();
+
+        mRFDrive.setDirection(DcMotor.Direction.REVERSE);
+        mRBDrive.setDirection(DcMotor.Direction.REVERSE);
+
+        resetEncoders();
+    }
+
+    /**
+     * Tank drive.
+     * @param lSpeed speed of the left motors, in the range [-1.0, 1.0]
+     * @param rSpeed speed of the right motors, in the range [-1.0, 1.0]
+     */
+    public void move(double lSpeed, double rSpeed) {
+        mLFDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        mLBDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        mRFDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        mRBDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        mLFDrive.setPower(lSpeed);
+        mLBDrive.setPower(lSpeed);
+        mRFDrive.setPower(rSpeed);
+        mRBDrive.setPower(rSpeed);
+    }
+
+    /**
+     * Mecanum strafe horizontally.
+     * @param speed speed of the strafe, in the range [-1.0, 1.0], a positive speed moves left
+     */
+    public void strafe(double speed) {
+        mLFDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        mLBDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        mRFDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        mRBDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        // positive speed moves left
+        mLFDrive.setPower(speed);
+        mLBDrive.setPower(-speed);
+        mRFDrive.setPower(-speed);
+        mRBDrive.setPower(speed);
+    }
+
+    /**
+     * Resets the drive encoders.
+     */
+    public void resetEncoders() {
+        mLFDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mLBDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mRFDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mRBDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+
+
+    /**
+     * Soft stops the drive train.
+     */
+    public void stop() {
+        move(0.0, 0.0);
+    }
+}
