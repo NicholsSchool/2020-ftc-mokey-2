@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.Robot;
 
 
 public class Drive {
@@ -82,6 +83,26 @@ public class Drive {
 
         if(Math.abs(currentPosition - position) > Constants.kEncoderMargin) {
             move(speed, speed);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Turns in place to a position with the IMU.
+     * @param angle the target angle, positive is counterclockwise
+     * @param power the power of the motors, in the range [0.0, 1.0]
+     * @return true if the robot is still moving towards the target, false if the robot is at the target
+     */
+    public boolean turn(double angle, double power) {
+        double currentAngle = Robot.imu.getOrientation();
+
+        double speed = currentAngle < angle ? power : -power;
+
+        if(Math.abs(currentAngle - angle) > Constants.kAngleMargin) {
+            move(-speed, speed);
 
             return true;
         } else {

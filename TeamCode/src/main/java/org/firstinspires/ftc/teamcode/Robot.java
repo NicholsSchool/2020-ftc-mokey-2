@@ -4,10 +4,13 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.sensors.Imu;
 import org.firstinspires.ftc.teamcode.subsystems.Drive;
+import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
 public class Robot {
 
     public static Drive drive;
+
+    public static Intake intake;
 
     public static Imu imu;
 
@@ -18,6 +21,8 @@ public class Robot {
     public static void init(HardwareMap hardwareMap) {
         drive = new Drive(hardwareMap);
 
+        intake = new Intake(hardwareMap);
+
         imu = new Imu(hardwareMap);
     }
 
@@ -26,5 +31,6 @@ public class Robot {
      */
     public static void stop() {
         drive.stop();
+        intake.stop();
     }
 }

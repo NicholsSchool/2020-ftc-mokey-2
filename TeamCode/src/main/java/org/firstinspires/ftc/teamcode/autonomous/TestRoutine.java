@@ -19,6 +19,13 @@ public class TestRoutine {
         while(Robot.drive.move(ticks, 0.5) && opMode.opModeIsActive()) {
 
         }
-        Robot.drive.stop();
+        Robot.stop();
+
+        Robot.imu.reset();
+        int angle = 90;
+        while(Robot.drive.turn(angle, 0.5) && opMode.opModeIsActive()) {
+
+        }
+        Robot.stop();
     }
 }

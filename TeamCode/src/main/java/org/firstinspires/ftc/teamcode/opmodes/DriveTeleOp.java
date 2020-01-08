@@ -13,12 +13,15 @@ import org.firstinspires.ftc.teamcode.Robot;
 @TeleOp(name="Drive")
 public class DriveTeleOp extends OpMode
 {
+    private double mDriverSpeedMultiplier;
+
     /*
      * Code to run ONCE when the driver hits INIT
      */
     @Override
     public void init() {
         Robot.init(hardwareMap);
+        mDriverSpeedMultiplier = 1.0;
 
         telemetry.addData("Status", "Initialized");
     }
@@ -43,17 +46,28 @@ public class DriveTeleOp extends OpMode
      */
     @Override
     public void loop() {
+        // Fast and slow modes for driver
+        if(gamepad1.a) {
+            mDriverSpeedMultiplier = 1.0;
+        } else if(gamepad1.b) {
+            mDriverSpeedMultiplier = 0.25;
+        }
+        //
+
         // Tank drive and strafe
-        double strafeSpeed = gamepad1.left_trigger - gamepad1.right_trigger;
+        double strafeSpeed = (gamepad1.left_trigger - gamepad1.right_trigger) * mDriverSpeedMultiplier;
         if(strafeSpeed != 0) {
             Robot.drive.strafe(strafeSpeed);
         } else {
-            double lSpeed = -gamepad1.left_stick_y;
-            double rSpeed = -gamepad1.right_stick_y;
+            double lSpeed = -gamepad1.left_stick_y * mDriverSpeedMultiplier;
+            double rSpeed = -gamepad1.right_stick_y * mDriverSpeedMultiplier;
 
             Robot.drive.move(lSpeed, rSpeed);
         }
         //
+
+        double intakeSpeed = gamepad2.left_trigger - gamepad2.right_trigger;
+        Robot.intake.intake(intakeSpeed);
 
         Robot.imu.debug(telemetry);
     }
