@@ -50,7 +50,7 @@ public class DriveTeleOp extends OpMode
         if(gamepad1.a) {
             mDriverSpeedMultiplier = 1.0;
         } else if(gamepad1.b) {
-            mDriverSpeedMultiplier = 0.25;
+            mDriverSpeedMultiplier = 0.33;
         }
         //
 

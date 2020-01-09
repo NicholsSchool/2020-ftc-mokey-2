@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.sensors.Imu;
+import org.firstinspires.ftc.teamcode.sensors.Vision;
 import org.firstinspires.ftc.teamcode.subsystems.Drive;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
@@ -13,6 +14,7 @@ public class Robot {
     public static Intake intake;
 
     public static Imu imu;
+    public static Vision vision;
 
     /**
      * Initializes each subsystem and sensor to its default state at the beginning of an OpMode.
@@ -24,6 +26,7 @@ public class Robot {
         intake = new Intake(hardwareMap);
 
         imu = new Imu(hardwareMap);
+        vision = new Vision();
     }
 
     /**

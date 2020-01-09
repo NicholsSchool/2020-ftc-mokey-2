@@ -4,14 +4,12 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Robot;
-import org.firstinspires.ftc.teamcode.autonomous.TestRoutine;
-
 
 /**
- * An auto OpMode for testing.
+ * An auto OpMode at saves the current camera view.
  */
-@Autonomous(name="Test")
-public class TestAuto extends LinearOpMode {
+@Autonomous(name="Save Image")
+public class SaveImageAuto extends LinearOpMode {
 
 
     /**
@@ -23,9 +21,7 @@ public class TestAuto extends LinearOpMode {
 
         waitForStart();
 
-        telemetry.addData("Skystone position", Robot.vision.getSkystonePosition("red"));
-
-        TestRoutine.run(this);
+        Robot.vision.write();
     }
 
 }
