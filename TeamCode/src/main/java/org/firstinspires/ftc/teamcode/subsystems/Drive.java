@@ -64,10 +64,10 @@ public class Drive {
         mRFDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         mRBDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        mLFDrive.setPower(speed);
-        mLBDrive.setPower(-speed);
-        mRFDrive.setPower(-speed);
-        mRBDrive.setPower(speed);
+        mLFDrive.setPower(-speed);
+        mLBDrive.setPower(speed);
+        mRFDrive.setPower(speed);
+        mRBDrive.setPower(-speed);
     }
 
     /**
@@ -129,9 +129,8 @@ public class Drive {
 
     /**
      * Adds debug values to the telemetry.
-     * @param telemetry the current telemetry
      */
-    public void debug(Telemetry telemetry) {
+    public void debug() {
 
     }
 }

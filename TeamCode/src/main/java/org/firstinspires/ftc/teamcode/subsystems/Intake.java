@@ -46,9 +46,8 @@ public class Intake {
 
     /**
      * Adds debug values to the telemetry.
-     * @param telemetry the current telemetry
      */
-    public void debug(Telemetry telemetry) {
+    public void debug() {
 
     }
 }

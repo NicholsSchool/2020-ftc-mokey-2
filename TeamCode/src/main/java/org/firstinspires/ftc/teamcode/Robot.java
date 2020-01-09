@@ -2,12 +2,15 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.sensors.Imu;
 import org.firstinspires.ftc.teamcode.sensors.Vision;
 import org.firstinspires.ftc.teamcode.subsystems.Drive;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
 public class Robot {
+
+    public static Telemetry telemetry;
 
     public static Drive drive;
 
@@ -20,7 +23,9 @@ public class Robot {
      * Initializes each subsystem and sensor to its default state at the beginning of an OpMode.
      * @param hardwareMap the hardware map of Mokey 2
      */
-    public static void init(HardwareMap hardwareMap) {
+    public static void init(HardwareMap hardwareMap, Telemetry telemetry) {
+        Robot.telemetry = telemetry;
+
         drive = new Drive(hardwareMap);
 
         intake = new Intake(hardwareMap);

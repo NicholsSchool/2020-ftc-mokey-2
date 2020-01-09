@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.sensors;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.R;
+import org.firstinspires.ftc.teamcode.Robot;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -31,7 +33,7 @@ public class Vision {
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(R.id.cameraMonitorViewId);
 
         parameters.vuforiaLicenseKey = "AVhfqRH/////AAABGd7wUb568kaDho9qW6uyIZV9ovIZF9UnMCqNzmBE1YeaiqGsmXkyZr3aGikHN++7DfnOeymbsUDQELp8AGTQRbYXf6re9h7csCPKXnY/YjlbOHCp7hzDRIJ3rXe+m1RmOIDjLUs8w6sauRzlhGH6qlWfqvBrp94N2NUMygqt4MMDlrXH5B2ieMgcaUJiA3yS9U27wLKcXzPLzhNa2Pj6uyDXAMIYC2ymfRVVOOecwr9wImJ5fiHjzXvJTwPoQ9hYgEn92jPl2Z+yEq225/hdTGSgTKhlFRQI5sM4otsL/vCH6avqjuwyTBC5189St7ZrMzNjsBIRTsTLOqlwFdasebS4d9hHGxfioYlq4+4fSvSF";;
-        parameters.cameraDirection = CameraDirection.FRONT;
+        parameters.cameraDirection = CameraDirection.BACK;
 
         mVuforia = ClassFactory.getInstance().createVuforia(parameters);
     }
@@ -50,9 +52,9 @@ public class Vision {
         int start = alliance.equals("red") ? Constants.kRedScanLineStart : Constants.kBlueScanLineStart;
         int end = alliance.equals("red") ? Constants.kRedScanLineEnd : Constants.kBlueScanLineEnd;
 
-        double yellow1 = 0;
-        double yellow2 = 0;
-        double yellow3 = 0;
+        int yellow1 = 0;
+        int yellow2 = 0;
+        int yellow3 = 0;
         for(int i = start; i < end; i++) {
             int pixel = bitmap.getPixel(i, Constants.kScanLineY);
 
@@ -77,8 +79,11 @@ public class Vision {
 
     private Bitmap getBitmap() {
         Image img = getImage();
-        if(img == null)
+        if(img == null) {
+            Robot.telemetry.addData("Vision", "No image!");
+            Robot.telemetry.update();
             return null;
+        }
 
         // copy the bitmap from the Vuforia frame
         Bitmap bitmap = Bitmap.createBitmap(img.getWidth(), img.getHeight(), Bitmap.Config.RGB_565);
@@ -94,8 +99,12 @@ public class Vision {
     private Image getImage() {
         Image image = null;
         Vuforia.setFrameFormat(PIXEL_FORMAT.RGB565, true);
+        int originalCapacity = mVuforia.getFrameQueueCapacity();
+        mVuforia.setFrameQueueCapacity(1);
+
         try {
             VuforiaLocalizer.CloseableFrame frame = mVuforia.getFrameQueue().take();
+
             for (int i = 0; i < frame.getNumImages(); i++) {
                 if (frame.getImage(i).getFormat() == PIXEL_FORMAT.RGB565) {
                     image = frame.getImage(i);
@@ -106,6 +115,8 @@ public class Vision {
         } catch (InterruptedException exc) {
 
         }
+
+        mVuforia.setFrameQueueCapacity(originalCapacity);
         return image;
     }
 
@@ -120,10 +131,12 @@ public class Vision {
 
         String name = Calendar.getInstance().getTime() + ".png";
         String path = Environment.getExternalStorageDirectory().getPath();
-        try {
-            FileOutputStream out = new FileOutputStream(new File(path, name));
+        try(FileOutputStream out = new FileOutputStream(new File(path, name))) {
+
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-            out.close();
+            Robot.telemetry.addData("Wrote to", path + name);
+            Robot.telemetry.update();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

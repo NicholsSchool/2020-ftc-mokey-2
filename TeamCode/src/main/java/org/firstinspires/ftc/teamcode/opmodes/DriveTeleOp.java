@@ -20,7 +20,7 @@ public class DriveTeleOp extends OpMode
      */
     @Override
     public void init() {
-        Robot.init(hardwareMap);
+        Robot.init(hardwareMap, telemetry);
         mDriverSpeedMultiplier = 1.0;
 
         telemetry.addData("Status", "Initialized");
@@ -50,7 +50,7 @@ public class DriveTeleOp extends OpMode
         if(gamepad1.a) {
             mDriverSpeedMultiplier = 1.0;
         } else if(gamepad1.b) {
-            mDriverSpeedMultiplier = 0.33;
+            mDriverSpeedMultiplier = 0.5;
         }
         //
 
