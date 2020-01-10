@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
 
 /**
@@ -15,15 +16,15 @@ public class TestRoutine {
      */
     public static void run(LinearOpMode opMode) {
         Robot.drive.resetEncoders();
-        int ticks = 2000;
-        while(Robot.drive.move(ticks, 0.5) && opMode.opModeIsActive()) {
+        int ticks = (int)(24 * Constants.kTicksPerInch);
+        while(Robot.drive.move(ticks, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
 
         }
         Robot.stop();
 
         Robot.imu.reset();
-        int angle = 90;
-        while(Robot.drive.turn(angle, 0.5) && opMode.opModeIsActive()) {
+        int angle = 0;
+        while(Robot.drive.turn(angle, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
 
         }
         Robot.stop();

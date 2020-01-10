@@ -23,7 +23,7 @@ public class TestAuto extends LinearOpMode {
 
         waitForStart();
 
-        telemetry.addData("Skystone position", Robot.vision.getSkystonePosition("red"));
+        // telemetry.addData("Skystone position", Robot.vision.getSkystonePosition("red"));
 
         TestRoutine.run(this);
     }

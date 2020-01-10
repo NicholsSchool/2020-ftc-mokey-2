@@ -49,31 +49,29 @@ public class Vision {
             return Constants.kSkystoneOuter;
         }
 
-        int start = alliance.equals("red") ? Constants.kRedScanLineStart : Constants.kBlueScanLineStart;
-        int end = alliance.equals("red") ? Constants.kRedScanLineEnd : Constants.kBlueScanLineEnd;
+        int start = alliance.equals("Red") ? Constants.kRedScanLineStart : Constants.kBlueScanLineStart;
+        int end = alliance.equals("Red") ? Constants.kRedScanLineEnd : Constants.kBlueScanLineEnd;
 
         int yellow1 = 0;
         int yellow2 = 0;
-        int yellow3 = 0;
         for(int i = start; i < end; i++) {
             int pixel = bitmap.getPixel(i, Constants.kScanLineY);
 
-            if(i < (end - start) / 3) {
+            if(i < (end - start) / 2) {
                 yellow1 += Color.red(pixel) + Color.green(pixel);
-            } else if(i < (end - start) * 2 / 3) {
-                yellow2 += Color.red(pixel) + Color.green(pixel);
             } else {
-                yellow3 += Color.red(pixel) + Color.green(pixel);
+                yellow2 += Color.red(pixel) + Color.green(pixel);
             }
         }
 
-        // Stone with the least amount of yellow is the Skystone
-        if(yellow1 <= yellow2 && yellow1 <= yellow3) {
-            return alliance.equals("red") ? Constants.kSkystoneInner : Constants.kSkystoneOuter;
-        } else if(yellow2 <= yellow3) {
-            return Constants.kSkystoneCenter;
+        Robot.telemetry.addData("yellow1", yellow1);
+        Robot.telemetry.addData("yellow2", yellow2);
+        if(yellow1 < Constants.kYellowThresh) {
+            return alliance.equals("Red") ? Constants.kSkystoneCenter : Constants.kSkystoneOuter;
+        } else if(yellow2 < Constants.kYellowThresh) {
+            return alliance.equals("Red") ? Constants.kSkystoneOuter : Constants.kSkystoneCenter;
         } else {
-            return alliance.equals("red") ? Constants.kSkystoneOuter : Constants.kSkystoneInner;
+            return Constants.kSkystoneInner;
         }
     }
 
