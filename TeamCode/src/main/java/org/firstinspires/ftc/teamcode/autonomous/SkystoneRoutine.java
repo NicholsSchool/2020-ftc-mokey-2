@@ -24,10 +24,10 @@ public class SkystoneRoutine {
                 ticks = (int)(9 * Constants.kTicksPerInch);
                 break;
             case Constants.kSkystoneCenter:
-                ticks = (int)(18 * Constants.kTicksPerInch);
+                ticks = (int)(19 * Constants.kTicksPerInch);
                 break;
             case Constants.kSkystoneOuter:
-                ticks = (int)(27 * Constants.kTicksPerInch);
+                ticks = (int)(26 * Constants.kTicksPerInch);
                 break;
         }
         while(Robot.drive.move(ticks, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {

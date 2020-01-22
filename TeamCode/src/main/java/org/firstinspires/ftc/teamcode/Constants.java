@@ -20,10 +20,10 @@ public class Constants {
     public static final int kSkystoneOuter = 3;
 
     // Vision
-    public static final int kRedScanLineStart = 0;
-    public static final int kRedScanLineEnd = 0;
-    public static final int kBlueScanLineStart = 0;
-    public static final int kBlueScanLineEnd = 0;
-    public static final int kScanLineY = 0;
+    public static final int kRedScanLineStart = 1115;
+    public static final int kRedScanLineEnd = 1275;
+    public static final int kBlueScanLineStart = 200;
+    public static final int kBlueScanLineEnd = 360;
+    public static final int kScanLineY = 710;
     public static final int kYellowThresh = (kRedScanLineEnd - kRedScanLineStart) * 100;
 }

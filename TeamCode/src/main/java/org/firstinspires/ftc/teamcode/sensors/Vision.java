@@ -57,15 +57,19 @@ public class Vision {
         for(int i = start; i < end; i++) {
             int pixel = bitmap.getPixel(i, Constants.kScanLineY);
 
-            if(i < (end - start) / 2) {
-                yellow1 += Color.red(pixel) + Color.green(pixel);
-            } else {
+            if(i < (end + start) / 2) {
+                // flip the positions since the Vuforia image is upside down for whatever reason
                 yellow2 += Color.red(pixel) + Color.green(pixel);
+            } else {
+                yellow1 += Color.red(pixel) + Color.green(pixel);
             }
         }
 
-        Robot.telemetry.addData("yellow1", yellow1);
-        Robot.telemetry.addData("yellow2", yellow2);
+        Robot.telemetry.addData("Yellow1", yellow1);
+        Robot.telemetry.addData("Yellow2", yellow2);
+        Robot.telemetry.addData("Yellow thresh", Constants.kYellowThresh);
+        Robot.telemetry.update();
+
         if(yellow1 < Constants.kYellowThresh) {
             return alliance.equals("Red") ? Constants.kSkystoneCenter : Constants.kSkystoneOuter;
         } else if(yellow2 < Constants.kYellowThresh) {

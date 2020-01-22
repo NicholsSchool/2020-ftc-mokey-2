@@ -22,6 +22,7 @@ public class SaveImageAuto extends LinearOpMode {
         waitForStart();
 
         Robot.vision.write();
+        sleep(5000);
     }
 
 }
