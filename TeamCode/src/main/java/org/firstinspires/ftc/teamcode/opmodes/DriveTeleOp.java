@@ -66,8 +66,19 @@ public class DriveTeleOp extends OpMode
         }
         //
 
+        // Intake
         double intakeSpeed = gamepad2.left_trigger - gamepad2.right_trigger;
         Robot.intake.intake(intakeSpeed);
+        //
+
+        // Winch
+        if(gamepad2.dpad_up) {
+            Robot.winch.wind(1.0);
+        } else if (gamepad2.dpad_down) {
+            Robot.winch.wind(-1.0);
+        } else {
+            Robot.winch.stop();
+        }
 
         Robot.imu.debug(telemetry);
     }

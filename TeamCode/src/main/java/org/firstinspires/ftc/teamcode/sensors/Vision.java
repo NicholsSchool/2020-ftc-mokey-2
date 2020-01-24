@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.sensors;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection;
 import org.firstinspires.ftc.teamcode.Constants;
@@ -114,8 +113,8 @@ public class Vision {
                 }
             }
             frame.close();
-        } catch (InterruptedException exc) {
-
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
         mVuforia.setFrameQueueCapacity(originalCapacity);

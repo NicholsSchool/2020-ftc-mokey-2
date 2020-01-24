@@ -1,9 +1,14 @@
 Expansion Hub 2
 
     Motors
-        0 rFDrive
-        1 rBDrive
-        2 rIntake
+        0 lFDrive
+        1 lBDrive
+        2 lIntake
+        3 lElevator
+
+    Servos
+        0 lWinch
+        1 lPassthrough
 
     I2C Bus 0
         0 imu
@@ -12,9 +17,14 @@ Expansion Hub 2
 Expansion Hub 3
 
     Motors
-        0 lFDrive
-        1 lDrive
-        2 lIntake
+        0 rFDrive
+        1 rDrive
+        2 rIntake
+        3 rElevator
+
+    Servos
+        0 rWinch
+        1 rPassthrough
 
     I2C Bus 0
         **Make sure the imu is not configured here or you may get connection issues**
