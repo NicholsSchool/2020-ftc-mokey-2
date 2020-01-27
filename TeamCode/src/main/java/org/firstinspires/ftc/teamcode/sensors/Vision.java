@@ -6,7 +6,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.Came
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.R;
 import org.firstinspires.ftc.teamcode.Robot;
-import org.firstinspires.ftc.teamcode.SkystonePosition;
+import org.firstinspires.ftc.teamcode.util.SkystonePosition;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;

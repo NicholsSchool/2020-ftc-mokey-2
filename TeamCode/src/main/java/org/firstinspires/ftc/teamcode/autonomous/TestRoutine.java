@@ -15,15 +15,18 @@ public class TestRoutine {
      * @param opMode the OpMode running the routine
      */
     public static void run(LinearOpMode opMode) {
+        int ticks = 0;
+        int angle = 0;
+
         Robot.drive.resetEncoders();
-        int ticks = (int)(24 * Constants.kTicksPerInch);
+        ticks = (int)(24 * Constants.kTicksPerInch);
         while(Robot.drive.move(ticks, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
 
         }
         Robot.stop();
 
         Robot.imu.reset();
-        int angle = 0;
+        angle = 90;
         while(Robot.drive.turn(angle, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
 
         }

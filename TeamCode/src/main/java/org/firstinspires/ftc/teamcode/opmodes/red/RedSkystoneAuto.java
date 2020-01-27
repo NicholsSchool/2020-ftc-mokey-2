@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Robot;
-import org.firstinspires.ftc.teamcode.SkystonePosition;
+import org.firstinspires.ftc.teamcode.util.SkystonePosition;
 import org.firstinspires.ftc.teamcode.autonomous.SkystoneRoutine;
 
 /**

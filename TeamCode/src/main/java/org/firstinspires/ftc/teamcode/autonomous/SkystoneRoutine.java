@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
-import org.firstinspires.ftc.teamcode.SkystonePosition;
+import org.firstinspires.ftc.teamcode.util.SkystonePosition;
 
 /**
  * An auto routine used for grabbing a Skystone from starting position.
