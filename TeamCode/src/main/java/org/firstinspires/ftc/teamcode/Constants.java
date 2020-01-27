@@ -14,15 +14,8 @@ public class Constants {
     public static final double kElevatorUpSpeed = 0.75;
     public static final double kElevatorDownSpeed = -0.75;
 
-
     public static final int kEncoderMargin = 50;
     public static final int kAngleMargin = 10;
-
-
-    public static final int kSkystoneInner = 1;
-    public static final int kSkystoneCenter = 2;
-    public static final int kSkystoneOuter = 3;
-    public static final int kSkystoneUnknown = 4;
 
     // Vision
     public static final int kRedScanLineStart = 1115;

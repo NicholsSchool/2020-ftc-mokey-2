@@ -6,6 +6,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.Came
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.R;
 import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.SkystonePosition;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -42,10 +43,10 @@ public class Vision {
      * @param alliance the current alliance
      * @return the position of the Skystone
      */
-    public int getSkystonePosition(String alliance) {
+    public SkystonePosition getSkystonePosition(String alliance) {
         Bitmap bitmap = getBitmap();
         if(bitmap == null) {
-            return Constants.kSkystoneUnknown;
+            return SkystonePosition.UNKNOWN;
         }
 
         int start = alliance.equals("Red") ? Constants.kRedScanLineStart : Constants.kBlueScanLineStart;
@@ -65,11 +66,11 @@ public class Vision {
         }
 
         if(yellow1 < Constants.kYellowThresh) {
-            return alliance.equals("Red") ? Constants.kSkystoneCenter : Constants.kSkystoneOuter;
+            return alliance.equals("Red") ? SkystonePosition.CENTER : SkystonePosition.OUTER;
         } else if(yellow2 < Constants.kYellowThresh) {
-            return alliance.equals("Red") ? Constants.kSkystoneOuter : Constants.kSkystoneCenter;
+            return alliance.equals("Red") ? SkystonePosition.OUTER : SkystonePosition.CENTER;
         } else {
-            return Constants.kSkystoneInner;
+            return SkystonePosition.INNER;
         }
     }
 

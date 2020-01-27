@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.SkystonePosition;
 
 /**
  * An auto routine used for grabbing a Skystone from starting position.
@@ -14,19 +15,19 @@ public class SkystoneRoutine {
      * Runs the routine.
      * @param opMode the OpMode running the routine
      */
-    public static void run(LinearOpMode opMode, String alliance, int skystonePos) {
+    public static void run(LinearOpMode opMode, String alliance, SkystonePosition skystonePos) {
         int ticks = 0;
         int angle = 0;
 
         Robot.drive.resetEncoders();
         switch (skystonePos) {
-            case Constants.kSkystoneInner:
+            case INNER:
                 ticks = (int)(9 * Constants.kTicksPerInch);
                 break;
-            case Constants.kSkystoneCenter:
+            case CENTER:
                 ticks = (int)(18 * Constants.kTicksPerInch);
                 break;
-            case Constants.kSkystoneOuter:
+            case OUTER:
                 ticks = (int)(26 * Constants.kTicksPerInch);
                 break;
         }
@@ -44,13 +45,13 @@ public class SkystoneRoutine {
 
         Robot.drive.resetEncoders();
         switch (skystonePos) {
-            case Constants.kSkystoneInner:
+            case INNER:
                 ticks = (int)(40 * Constants.kTicksPerInch);
                 break;
-            case Constants.kSkystoneCenter:
+            case CENTER:
                 ticks = (int)(29 * Constants.kTicksPerInch);
                 break;
-            case Constants.kSkystoneOuter:
+            case OUTER:
                 ticks = (int)(17 * Constants.kTicksPerInch);
                 break;
         }
@@ -74,13 +75,13 @@ public class SkystoneRoutine {
 
         Robot.drive.resetEncoders();
         switch (skystonePos) {
-            case Constants.kSkystoneInner:
+            case INNER:
                 ticks = (int)(45 * Constants.kTicksPerInch);
                 break;
-            case Constants.kSkystoneCenter:
+            case CENTER:
                 ticks = (int)(35 * Constants.kTicksPerInch);
                 break;
-            case Constants.kSkystoneOuter:
+            case OUTER:
                 ticks = (int)(30 * Constants.kTicksPerInch);
                 break;
         }
