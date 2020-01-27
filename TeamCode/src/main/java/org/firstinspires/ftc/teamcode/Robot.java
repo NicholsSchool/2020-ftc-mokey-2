@@ -6,6 +6,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.sensors.Imu;
 import org.firstinspires.ftc.teamcode.sensors.Vision;
 import org.firstinspires.ftc.teamcode.subsystems.Drive;
+import org.firstinspires.ftc.teamcode.subsystems.Elevator;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Winch;
 
@@ -16,6 +17,7 @@ public class Robot {
     public static Drive drive;
     public static Intake intake;
     public static Winch winch;
+    public static Elevator elevator;
 
     public static Imu imu;
     public static Vision vision;
@@ -30,6 +32,7 @@ public class Robot {
         drive = new Drive(hardwareMap);
         intake = new Intake(hardwareMap);
         winch = new Winch(hardwareMap);
+        elevator = new Elevator(hardwareMap);
 
         imu = new Imu(hardwareMap);
         vision = new Vision();
@@ -42,5 +45,6 @@ public class Robot {
         drive.stop();
         intake.stop();
         winch.stop();
+        elevator.stop();
     }
 }

@@ -24,7 +24,7 @@ public class SkystoneRoutine {
                 ticks = (int)(9 * Constants.kTicksPerInch);
                 break;
             case Constants.kSkystoneCenter:
-                ticks = (int)(19 * Constants.kTicksPerInch);
+                ticks = (int)(18 * Constants.kTicksPerInch);
                 break;
             case Constants.kSkystoneOuter:
                 ticks = (int)(26 * Constants.kTicksPerInch);
@@ -36,7 +36,7 @@ public class SkystoneRoutine {
         Robot.stop();
 
         Robot.imu.reset();
-        angle = alliance.equals("Red") ? 30 : -30;
+        angle = alliance.equals("Red") ? 25 : -25;
         while(Robot.drive.turn(angle, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
 
         }
@@ -45,13 +45,13 @@ public class SkystoneRoutine {
         Robot.drive.resetEncoders();
         switch (skystonePos) {
             case Constants.kSkystoneInner:
-                ticks = (int)(42 * Constants.kTicksPerInch);
+                ticks = (int)(40 * Constants.kTicksPerInch);
                 break;
             case Constants.kSkystoneCenter:
-                ticks = (int)(27 * Constants.kTicksPerInch);
+                ticks = (int)(29 * Constants.kTicksPerInch);
                 break;
             case Constants.kSkystoneOuter:
-                ticks = (int)(18 * Constants.kTicksPerInch);
+                ticks = (int)(17 * Constants.kTicksPerInch);
                 break;
         }
         while(Robot.drive.move(ticks, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
@@ -60,7 +60,30 @@ public class SkystoneRoutine {
         Robot.stop();
 
         Robot.drive.resetEncoders();
-        ticks *= -1;
+        ticks = (int)(-16 * Constants.kTicksPerInch);
+        while(Robot.drive.move(ticks, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
+
+        }
+        Robot.stop();
+
+        angle = alliance.equals("Red") ? -87 : 87;
+        while(Robot.drive.turn(angle, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
+
+        }
+        Robot.stop();
+
+        Robot.drive.resetEncoders();
+        switch (skystonePos) {
+            case Constants.kSkystoneInner:
+                ticks = (int)(45 * Constants.kTicksPerInch);
+                break;
+            case Constants.kSkystoneCenter:
+                ticks = (int)(35 * Constants.kTicksPerInch);
+                break;
+            case Constants.kSkystoneOuter:
+                ticks = (int)(30 * Constants.kTicksPerInch);
+                break;
+        }
         while(Robot.drive.move(ticks, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
 
         }

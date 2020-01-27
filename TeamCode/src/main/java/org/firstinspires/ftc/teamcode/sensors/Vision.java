@@ -45,7 +45,7 @@ public class Vision {
     public int getSkystonePosition(String alliance) {
         Bitmap bitmap = getBitmap();
         if(bitmap == null) {
-            return Constants.kSkystoneOuter;
+            return Constants.kSkystoneUnknown;
         }
 
         int start = alliance.equals("Red") ? Constants.kRedScanLineStart : Constants.kBlueScanLineStart;
@@ -64,11 +64,6 @@ public class Vision {
             }
         }
 
-        Robot.telemetry.addData("Yellow1", yellow1);
-        Robot.telemetry.addData("Yellow2", yellow2);
-        Robot.telemetry.addData("Yellow thresh", Constants.kYellowThresh);
-        Robot.telemetry.update();
-
         if(yellow1 < Constants.kYellowThresh) {
             return alliance.equals("Red") ? Constants.kSkystoneCenter : Constants.kSkystoneOuter;
         } else if(yellow2 < Constants.kYellowThresh) {
@@ -81,8 +76,6 @@ public class Vision {
     private Bitmap getBitmap() {
         Image img = getImage();
         if(img == null) {
-            Robot.telemetry.addData("Vision", "No image!");
-            Robot.telemetry.update();
             return null;
         }
 

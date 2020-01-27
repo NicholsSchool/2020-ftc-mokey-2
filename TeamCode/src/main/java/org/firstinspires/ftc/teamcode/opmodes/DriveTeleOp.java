@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 
+import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
 
 
@@ -14,6 +15,7 @@ import org.firstinspires.ftc.teamcode.Robot;
 public class DriveTeleOp extends OpMode
 {
     private double mDriverSpeedMultiplier;
+    private double mOperatorSpeedMultiplier;
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -22,6 +24,7 @@ public class DriveTeleOp extends OpMode
     public void init() {
         Robot.init(hardwareMap, telemetry);
         mDriverSpeedMultiplier = 1.0;
+        mOperatorSpeedMultiplier = 1.0;
 
         telemetry.addData("Status", "Initialized");
     }
@@ -54,6 +57,14 @@ public class DriveTeleOp extends OpMode
         }
         //
 
+        // Fast and slow modes for operator
+        if(gamepad2.left_bumper) {
+            mOperatorSpeedMultiplier = 1.0;
+        } else if(gamepad2.right_bumper) {
+            mOperatorSpeedMultiplier = 0.5;
+        }
+        //
+
         // Tank drive and strafe
         double strafeSpeed = (gamepad1.left_trigger - gamepad1.right_trigger) * mDriverSpeedMultiplier;
         if(strafeSpeed != 0) {
@@ -73,11 +84,21 @@ public class DriveTeleOp extends OpMode
 
         // Winch
         if(gamepad2.dpad_up) {
-            Robot.winch.wind(1.0);
+            Robot.winch.wind(Constants.kWinchSpeed);
         } else if (gamepad2.dpad_down) {
-            Robot.winch.wind(-1.0);
+            Robot.winch.wind(-Constants.kWinchSpeed);
         } else {
             Robot.winch.stop();
+        }
+        //
+
+        // Elevator
+        if(gamepad2.y) {
+            Robot.elevator.move(Constants.kElevatorUpSpeed * mOperatorSpeedMultiplier);
+        } else if(gamepad2.a) {
+            Robot.elevator.move(Constants.kElevatorDownSpeed * mOperatorSpeedMultiplier);
+        } else {
+            Robot.elevator.stop();
         }
 
         Robot.imu.debug(telemetry);

@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.opmodes.blue;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.autonomous.SkystoneRoutine;
 
@@ -21,9 +22,16 @@ public class BlueSkystoneAuto extends LinearOpMode {
         Robot.init(hardwareMap, telemetry);
         String[] args = getClass().getSimpleName().split("(?<=[a-z])(?=[A-Z])"); // split class name for args
 
-        waitForStart();
+        int skystonePos = Constants.kSkystoneOuter;
 
-        int skystonePos = Robot.vision.getSkystonePosition(args[0]);
+        while(!isStarted()) {
+            int pos = Robot.vision.getSkystonePosition(args[0]);
+            if(pos != Constants.kSkystoneUnknown) {
+                skystonePos = pos;
+            }
+            telemetry.addData("Skystone position", pos);
+            telemetry.update();
+        }
 
         SkystoneRoutine.run(this, args[0], skystonePos);
     }
