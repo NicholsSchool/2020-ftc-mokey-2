@@ -4,6 +4,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Robot;
 
 /**
  * Imu handles the imu data from the expansion hub on Mokey 2.
@@ -50,9 +51,8 @@ public class Imu {
 
     /**
      * Adds debug values to the telemetry.
-     * @param telemetry the output telemetry
      */
-    public void debug(Telemetry telemetry) {
-        telemetry.addData("orientation", getOrientation());
+    public void debug() {
+        Robot.telemetry.addData("orientation", getOrientation());
     }
 }

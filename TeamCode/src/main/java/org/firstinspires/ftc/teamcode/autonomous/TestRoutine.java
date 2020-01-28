@@ -1,35 +1,42 @@
 package org.firstinspires.ftc.teamcode.autonomous;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
 
 /**
  * An auto routine used for testing.
  */
-public class TestRoutine {
+public class TestRoutine extends Thread {
 
     /**
      * Runs the routine.
-     * @param opMode the OpMode running the routine
      */
-    public static void run(LinearOpMode opMode) {
+    @Override
+    public void run() {
         int ticks = 0;
         int angle = 0;
 
         Robot.drive.resetEncoders();
-        ticks = (int)(24 * Constants.kTicksPerInch);
-        while(Robot.drive.move(ticks, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
+        ticks = (int)(2400 * Constants.kTicksPerInch);
+        while(Robot.drive.move(ticks, Constants.kAutoDriveSpeed)) {
 
         }
         Robot.stop();
 
         Robot.imu.reset();
         angle = 90;
-        while(Robot.drive.turn(angle, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
+        while(Robot.drive.turn(angle, Constants.kAutoDriveSpeed)) {
 
         }
         Robot.stop();
+    }
+
+    /**
+     * Soft stops the robot and interrupts the thread.
+     */
+    @Override
+    public void interrupt() {
+        Robot.stop();
+        super.interrupt();
     }
 }

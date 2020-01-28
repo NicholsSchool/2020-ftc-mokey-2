@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -15,6 +16,8 @@ public class Drive {
     private DcMotor mLBDrive;
     private DcMotor mRFDrive;
     private DcMotor mRBDrive;
+
+    private ElapsedTime elapsedTime;
 
     /**
      * Creates a drive train with the default state at the beginning of an OpMode.
@@ -35,6 +38,8 @@ public class Drive {
         mRBDrive.setDirection(DcMotor.Direction.REVERSE);
 
         resetEncoders();
+
+        elapsedTime = new ElapsedTime();
     }
 
     /**
@@ -131,6 +136,6 @@ public class Drive {
      * Adds debug values to the telemetry.
      */
     public void debug() {
-
+        Robot.telemetry.addData("Velocity: ", mLFDrive.getCurrentPosition() / elapsedTime.seconds());
     }
 }

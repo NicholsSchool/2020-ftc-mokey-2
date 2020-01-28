@@ -101,7 +101,8 @@ public class DriveTeleOp extends OpMode
             Robot.elevator.stop();
         }
 
-        Robot.imu.debug(telemetry);
+        Robot.drive.move(1.0, 1.0);
+        Robot.drive.debug();
     }
 
     /*

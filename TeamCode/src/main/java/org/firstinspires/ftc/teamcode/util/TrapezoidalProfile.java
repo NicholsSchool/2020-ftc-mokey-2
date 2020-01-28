@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.util;
 
+/**
+ * The TrapezoidalProfile class is a utility class used to calculate trapezoidal motion profiles
+ */
 public class TrapezoidalProfile {
 
     private double mCruiseVelocity;
@@ -9,7 +12,7 @@ public class TrapezoidalProfile {
     private double mCruiseEndTime;
 
     /**
-     * Generates a trapezoidal motion profile
+     * Generates a trapezoidal motion profile.
      * @param cruiseVelocity the cruise velocity in sensor units per second
      * @param acceleration the acceleration in sensor units per second per second
      * @param distance the distance in sensor units
@@ -27,22 +30,29 @@ public class TrapezoidalProfile {
 
             // Solve for time from acceleration and distance
             mCruiseStartTime = Math.sqrt(cruiseStartDistance / acceleration * 2);
-            mCruiseEndTime = mCruiseStartTime;
         }
 
         double cruiseTime = (distance - 2 * cruiseStartDistance) / cruiseVelocity;
         mCruiseEndTime = mCruiseStartTime + cruiseTime;
     }
 
+    /**
+     * Gets the speed at the specified time.
+     * @param time the time in seconds
+     * @return the speed in sensor units
+     */
     public double get(double time) {
+        // Acceleration
         if(time < mCruiseStartTime) {
             return mAcceleration * time;
         }
 
+        // Cruise
         if(time >= mCruiseStartTime && time <= mCruiseEndTime) {
             return mCruiseVelocity;
         }
 
+        // Deceleration
         return Math.max(0, mAcceleration * (mCruiseEndTime + mCruiseStartTime - time));
     }
 }

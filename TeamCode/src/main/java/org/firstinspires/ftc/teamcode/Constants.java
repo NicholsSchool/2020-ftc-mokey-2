@@ -7,6 +7,10 @@ public class Constants {
     public static final double kGearRatio = 5.0/7.0;
     public static final double kTicksPerInch = kTicksPerDriveRotation / (Math.PI * kDriveWheelDiameter) * kGearRatio;
 
+    public static final double kMaxDriveVelocity = 0;
+    public static final double kAutoDriveVelocity = kMaxDriveVelocity / 2;
+    public static final double kAutoDriveAcceleration = kAutoDriveVelocity * 2;
+
     public static final double kAutoDriveSpeed = 0.4;
     public static final double kAutoIntakeSpeed = 1.0;
 
