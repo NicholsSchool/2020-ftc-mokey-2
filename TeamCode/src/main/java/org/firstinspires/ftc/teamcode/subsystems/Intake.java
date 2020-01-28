@@ -3,9 +3,9 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-
-
+/**
+ * Intake controls the intake subsystem of Mokey.
+ */
 public class Intake {
 
     private DcMotor mLIntake;
@@ -13,7 +13,7 @@ public class Intake {
 
     /**
      * Creates an intake with the default state at the beginning of an OpMode.
-     * @param hardwareMap the hardware map of Mokey 2
+     * @param hardwareMap the hardware map of Mokey
      */
     public Intake(HardwareMap hardwareMap) {
         mLIntake = hardwareMap.get(DcMotor.class, "lIntake");
@@ -34,8 +34,6 @@ public class Intake {
         mLIntake.setPower(speed);
         mRIntake.setPower(speed);
     }
-
-
 
     /**
      * Soft stops the intake.

@@ -3,7 +3,9 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-
+/**
+ * Elevator controls the elevator subsystem of Mokey.
+ */
 public class Elevator {
 
     private DcMotor mLElevator;
@@ -11,7 +13,7 @@ public class Elevator {
 
     /**
      * Creates an elevator with the default state at the beginning of an OpMode.
-     * @param hardwareMap the hardware map of Mokey 2
+     * @param hardwareMap the hardware map of Mokey
      */
     public Elevator(HardwareMap hardwareMap) {
         mLElevator = hardwareMap.get(DcMotor.class, "lElevator");
@@ -33,10 +35,8 @@ public class Elevator {
         mRElevator.setPower(speed);
     }
 
-
-
     /**
-     * Soft stops the intake.
+     * Soft stops the elevator.
      */
     public void stop() {
         move(0.0);

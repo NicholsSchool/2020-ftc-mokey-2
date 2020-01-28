@@ -4,12 +4,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
 
-
+/**
+ * Drive controls the drive train subsystem of Mokey.
+ */
 public class Drive {
 
     private DcMotor mLFDrive;
@@ -17,11 +17,11 @@ public class Drive {
     private DcMotor mRFDrive;
     private DcMotor mRBDrive;
 
-    private ElapsedTime elapsedTime;
+    private ElapsedTime mElapsedTime;
 
     /**
      * Creates a drive train with the default state at the beginning of an OpMode.
-     * @param hardwareMap the hardware map of Mokey 2
+     * @param hardwareMap the hardware map of Mokey
      */
     public Drive(HardwareMap hardwareMap) {
         mLFDrive = hardwareMap.get(DcMotor.class, "lFDrive");
@@ -39,7 +39,7 @@ public class Drive {
 
         resetEncoders();
 
-        elapsedTime = new ElapsedTime();
+        mElapsedTime = new ElapsedTime();
     }
 
     /**
@@ -136,6 +136,7 @@ public class Drive {
      * Adds debug values to the telemetry.
      */
     public void debug() {
-        Robot.telemetry.addData("Velocity: ", mLFDrive.getCurrentPosition() / elapsedTime.seconds());
+        Robot.telemetry.addData("Position: ", mLFDrive.getCurrentPosition());
+        Robot.telemetry.addData("Velocity: ", mLFDrive.getCurrentPosition() / mElapsedTime.seconds());
     }
 }

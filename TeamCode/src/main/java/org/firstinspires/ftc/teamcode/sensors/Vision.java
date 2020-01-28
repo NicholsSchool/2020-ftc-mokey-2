@@ -27,7 +27,7 @@ public class Vision {
     private VuforiaLocalizer mVuforia;
 
     /**
-     * Initializes Vuforia.
+     * Initializes a new Vision object with Vuforia.
      */
     public Vision() {
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(R.id.cameraMonitorViewId);
@@ -87,10 +87,6 @@ public class Vision {
         return bitmap;
     }
 
-    /**
-     * Returns the current image on the Vuforia stream
-     * @return the current image on the Vuforia stream
-     */
     private Image getImage() {
         Image image = null;
         Vuforia.setFrameFormat(PIXEL_FORMAT.RGB565, true);
@@ -116,7 +112,7 @@ public class Vision {
     }
 
     /**
-     * Saves bitmap to a file as a .png
+     * Saves current image on the Vuforia stream as a .png file.
      */
     public void write() {
         Bitmap bitmap = getBitmap();

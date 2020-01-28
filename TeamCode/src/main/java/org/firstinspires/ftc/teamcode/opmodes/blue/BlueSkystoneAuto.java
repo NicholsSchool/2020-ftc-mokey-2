@@ -8,11 +8,10 @@ import org.firstinspires.ftc.teamcode.util.SkystonePosition;
 import org.firstinspires.ftc.teamcode.autonomous.SkystoneRoutine;
 
 /**
- * An auto OpMode for parking from the close loading zone position while on the blue alliance.
+ * An auto OpMode for grabbing a Skystone while on the blue alliance.
  */
 @Autonomous(name="BlueSkystoneAuto")
 public class BlueSkystoneAuto extends LinearOpMode {
-
 
     /**
      * Runs the OpMode.
@@ -35,5 +34,4 @@ public class BlueSkystoneAuto extends LinearOpMode {
 
         SkystoneRoutine.run(this, args[0], skystonePos);
     }
-
 }

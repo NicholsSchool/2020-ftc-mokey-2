@@ -6,11 +6,10 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Robot;
 
 /**
- * An auto OpMode at saves the current camera view.
+ * An auto OpMode that saves the current camera view.
  */
 @Autonomous(name="Save Image")
 public class SaveImageAuto extends LinearOpMode {
-
 
     /**
      * Runs the OpMode.

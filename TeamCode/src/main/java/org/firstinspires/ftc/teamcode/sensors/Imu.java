@@ -3,11 +3,10 @@ package org.firstinspires.ftc.teamcode.sensors;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Robot;
 
 /**
- * Imu handles the imu data from the expansion hub on Mokey 2.
+ * Imu handles the imu data from the expansion hub on Mokey.
  */
 public class Imu {
 
@@ -16,7 +15,7 @@ public class Imu {
 
     /**
      * Creates an imu with the default config at the beginning of an OpMode.
-     * @param hardwareMap the hardware map of Mokey 2
+     * @param hardwareMap the hardware map of Mokey
      */
     public Imu(HardwareMap hardwareMap) {
         mImu = hardwareMap.get(BNO055IMU.class, "imu");
@@ -34,7 +33,7 @@ public class Imu {
     }
 
     /**
-     * Returns the yaw of Mokey 2.
+     * Returns the yaw of Mokey.
      * @return the yaw in degrees, in the range [-180.0, 180.0]
      */
     public double getOrientation() {

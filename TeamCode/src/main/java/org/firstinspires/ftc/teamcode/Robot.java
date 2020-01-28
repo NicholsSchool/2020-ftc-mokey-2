@@ -10,6 +10,9 @@ import org.firstinspires.ftc.teamcode.subsystems.Elevator;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Winch;
 
+/**
+ * The Robot class contains static references to every subsystem and manages their initializations.
+ */
 public class Robot {
 
     public static Telemetry telemetry;
@@ -24,7 +27,7 @@ public class Robot {
 
     /**
      * Initializes each subsystem and sensor to its default state at the beginning of an OpMode.
-     * @param hardwareMap the hardware map of Mokey 2
+     * @param hardwareMap the hardware map of Mokey
      */
     public static void init(HardwareMap hardwareMap, Telemetry telemetry) {
         Robot.telemetry = telemetry;

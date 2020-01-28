@@ -1,5 +1,3 @@
-
-
 package org.firstinspires.ftc.teamcode.opmodes.red;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -10,11 +8,10 @@ import org.firstinspires.ftc.teamcode.util.SkystonePosition;
 import org.firstinspires.ftc.teamcode.autonomous.SkystoneRoutine;
 
 /**
- * An auto OpMode for parking from the close loading zone position while on the blue alliance.
+ * An auto OpMode for grabbing a Skystone while starting on the red alliance.
  */
 @Autonomous(name="RedSkystoneAuto")
 public class RedSkystoneAuto extends LinearOpMode {
-
 
     /**
      * Runs the OpMode.

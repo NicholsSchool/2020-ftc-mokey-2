@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
+/**
+ * The Constants class defines static constants for various robot operations.
+ */
 public class Constants {
 
     public static final int kTicksPerDriveRotation = 1120;
@@ -27,5 +30,5 @@ public class Constants {
     public static final int kBlueScanLineStart = 200;
     public static final int kBlueScanLineEnd = 360;
     public static final int kScanLineY = 710;
-    public static final int kYellowThresh = (kRedScanLineEnd - kRedScanLineStart) * 110;
+    public static final int kYellowThresh = (kRedScanLineEnd - kRedScanLineStart) * 120;
 }
