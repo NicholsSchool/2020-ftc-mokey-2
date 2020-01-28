@@ -16,7 +16,21 @@ public class SkystoneRoutine {
      * Runs the routine.
      * @param opMode the OpMode running the routine
      */
-    public static void run(LinearOpMode opMode, String alliance, SkystonePosition skystonePos) {
+    public static void run(LinearOpMode opMode, String alliance) {
+        Robot.init(opMode.hardwareMap, opMode.telemetry, true);
+
+        SkystonePosition skystonePos = SkystonePosition.OUTER;
+
+        while(!opMode.isStarted()) {
+            SkystonePosition pos = Robot.vision.getSkystonePosition(alliance);
+            if(pos != SkystonePosition.UNKNOWN) {
+                skystonePos = pos;
+            }
+            Robot.telemetry.addData("Skystone position", pos);
+            Robot.telemetry.update();
+        }
+
+
         int ticks = 0;
         int angle = 0;
         TrapezoidalProfile tp = null;

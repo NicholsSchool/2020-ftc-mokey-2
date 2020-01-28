@@ -16,6 +16,10 @@ public class TestRoutine {
      * @param opMode the OpMode running the routine
      */
     public static void run(LinearOpMode opMode) {
+        Robot.init(opMode.hardwareMap, opMode.telemetry, true);
+
+        opMode.waitForStart();
+
         int ticks = 0;
         int angle = 0;
         TrapezoidalProfile tp = null;
@@ -35,5 +39,7 @@ public class TestRoutine {
 //
 //        }
 //        Robot.stop();
+
+        opMode.sleep(3000);
     }
 }

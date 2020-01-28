@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.autonomous.TestRoutine;
 
 /**
@@ -17,13 +16,7 @@ public class TestAuto extends LinearOpMode {
      */
     @Override
     public void runOpMode() {
-        Robot.init(hardwareMap, telemetry, true);
-
-        waitForStart();
-
         TestRoutine.run(this);
-
-        sleep(3000);
     }
 
 }
