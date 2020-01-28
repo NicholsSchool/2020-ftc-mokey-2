@@ -19,10 +19,10 @@ public class TrapezoidalProfile {
 
     /**
      * Generates a trapezoidal motion profile with the default cruise velocity and acceleration.
-     * @param inches distance in inches
+     * @param distance distance in sensor units
      */
-    public TrapezoidalProfile(double inches) {
-        this(Constants.kAutoDriveVelocity, Constants.kAutoDriveAcceleration, inches * Constants.kTicksPerInch);
+    public TrapezoidalProfile(double distance) {
+        this(Constants.kAutoDriveVelocity, Constants.kAutoDriveAcceleration, distance);
         mElapsedTime = new ElapsedTime();
     }
 

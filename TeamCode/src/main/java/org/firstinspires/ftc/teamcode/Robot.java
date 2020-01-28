@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.sensors.Vision;
 import org.firstinspires.ftc.teamcode.subsystems.Drive;
 import org.firstinspires.ftc.teamcode.subsystems.Elevator;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
+import org.firstinspires.ftc.teamcode.subsystems.Passthrough;
 import org.firstinspires.ftc.teamcode.subsystems.Winch;
 
 /**
@@ -21,6 +22,7 @@ public class Robot {
     public static Intake intake;
     public static Winch winch;
     public static Elevator elevator;
+    public static Passthrough passthrough;
 
     public static Imu imu;
     public static Vision vision;
@@ -36,6 +38,7 @@ public class Robot {
         intake = new Intake(hardwareMap);
         winch = new Winch(hardwareMap);
         elevator = new Elevator(hardwareMap);
+        passthrough = new Passthrough(hardwareMap);
 
         imu = new Imu(hardwareMap);
         vision = new Vision();
@@ -49,5 +52,6 @@ public class Robot {
         intake.stop();
         winch.stop();
         elevator.stop();
+        passthrough.stop();
     }
 }

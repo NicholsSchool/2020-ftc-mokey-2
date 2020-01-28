@@ -21,12 +21,7 @@ public class TestAuto extends LinearOpMode {
 
         waitForStart();
 
-        Thread routine = new TestRoutine();
-        routine.run();
-
-        sleep(60000);
-
-        routine.interrupt();
+        TestRoutine.run(this);
     }
 
 }

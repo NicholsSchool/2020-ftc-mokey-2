@@ -10,9 +10,10 @@ public class Constants {
     public static final double kGearRatio = 5.0/7.0;
     public static final double kTicksPerInch = kTicksPerDriveRotation / (Math.PI * kDriveWheelDiameter) * kGearRatio;
 
-    public static final double kMaxDriveVelocity = 0;
-    public static final double kAutoDriveVelocity = kMaxDriveVelocity / 2;
-    public static final double kAutoDriveAcceleration = kAutoDriveVelocity * 2;
+    // Motion profiling
+    public static final double kMaxDriveVelocity = 2500.0;
+    public static final double kAutoDriveVelocity = kMaxDriveVelocity;
+    public static final double kAutoDriveAcceleration = kAutoDriveVelocity;
 
     public static final double kAutoDriveSpeed = 0.4;
     public static final double kAutoIntakeSpeed = 1.0;
@@ -21,8 +22,7 @@ public class Constants {
     public static final double kElevatorUpSpeed = 0.75;
     public static final double kElevatorDownSpeed = -0.75;
 
-    public static final int kEncoderMargin = 50;
-    public static final int kAngleMargin = 10;
+    public static final double kPassthroughSpeed = 1.0;
 
     // Vision
     public static final int kRedScanLineStart = 1115;

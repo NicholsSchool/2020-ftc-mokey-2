@@ -98,8 +98,17 @@ public class DriveTeleOp extends OpMode
         } else {
             Robot.elevator.stop();
         }
+        //
 
-        Robot.drive.move(1.0, 1.0);
+        // Passthrough
+        if(gamepad2.x) {
+            Robot.passthrough.move(Constants.kPassthroughSpeed);
+        } else if(gamepad2.b) {
+            Robot.passthrough.move(-Constants.kPassthroughSpeed);
+        } else {
+            Robot.passthrough.stop();
+        }
+
         Robot.drive.debug();
     }
 

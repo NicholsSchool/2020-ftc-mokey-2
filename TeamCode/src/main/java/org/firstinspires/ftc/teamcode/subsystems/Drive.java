@@ -86,7 +86,7 @@ public class Drive {
 
         double speed = currentPosition < position ? power : -power;
 
-        if(Math.abs(currentPosition - position) > Constants.kEncoderMargin) {
+        if((speed > 0 && currentPosition < position) || (speed < 0 && currentPosition > position)) {
             move(speed, speed);
 
             return true;
@@ -106,7 +106,7 @@ public class Drive {
 
         double speed = currentAngle < angle ? power : -power;
 
-        if(Math.abs(currentAngle - angle) > Constants.kAngleMargin) {
+        if((speed > 0 && currentAngle < angle) || (speed < 0 && currentAngle > angle)) {
             move(-speed, speed);
 
             return true;
