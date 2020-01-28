@@ -16,7 +16,7 @@ public class SaveImageAuto extends LinearOpMode {
      */
     @Override
     public void runOpMode() {
-        Robot.init(hardwareMap, telemetry);
+        Robot.init(hardwareMap, telemetry,true);
 
         waitForStart();
 

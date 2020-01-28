@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.util.SkystonePosition;
+import org.firstinspires.ftc.teamcode.util.TrapezoidalProfile;
 
 /**
  * An auto routine used for grabbing a Skystone from starting position.
@@ -18,6 +19,7 @@ public class SkystoneRoutine {
     public static void run(LinearOpMode opMode, String alliance, SkystonePosition skystonePos) {
         int ticks = 0;
         int angle = 0;
+        TrapezoidalProfile tp = null;
 
         Robot.drive.resetEncoders();
         switch (skystonePos) {
@@ -56,7 +58,7 @@ public class SkystoneRoutine {
                 break;
         }
         while(Robot.drive.move(ticks, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
-            Robot.intake.intake(Constants.kAutoIntakeSpeed);
+            Robot.intake.intake(Constants.kIntakeSpeed);
         }
         Robot.stop();
 

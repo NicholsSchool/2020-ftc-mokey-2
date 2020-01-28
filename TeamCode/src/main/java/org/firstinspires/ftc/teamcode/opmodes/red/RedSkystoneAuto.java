@@ -18,7 +18,7 @@ public class RedSkystoneAuto extends LinearOpMode {
      */
     @Override
     public void runOpMode() {
-        Robot.init(hardwareMap, telemetry);
+        Robot.init(hardwareMap, telemetry, true);
         String[] args = getClass().getSimpleName().split("(?<=[a-z])(?=[A-Z])"); // split class name for args
 
         SkystonePosition skystonePos = SkystonePosition.OUTER;

@@ -18,10 +18,11 @@ public class TestRoutine {
     public static void run(LinearOpMode opMode) {
         int ticks = 0;
         int angle = 0;
+        TrapezoidalProfile tp = null;
 
         Robot.drive.resetEncoders();
-        ticks = (int)(72 * Constants.kTicksPerInch);
-        TrapezoidalProfile tp = new TrapezoidalProfile(ticks);
+        ticks = (int)(39 * Constants.kTicksPerInch);
+        tp = new TrapezoidalProfile(ticks);
         while(Robot.drive.move(ticks, tp.get()) && opMode.opModeIsActive()) {
             Robot.telemetry.addData("Speed", tp.get());
             Robot.telemetry.update();

@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.util;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.Robot;
 
 /**
  * The TrapezoidalProfile class is a utility class used to calculate trapezoidal motion profiles
@@ -22,7 +23,7 @@ public class TrapezoidalProfile {
      * @param distance distance in sensor units
      */
     public TrapezoidalProfile(double distance) {
-        this(Constants.kAutoDriveVelocity, Constants.kAutoDriveAcceleration, distance);
+        this(Constants.kCruiseVelocity, Constants.kAcceleration, distance);
         mElapsedTime = new ElapsedTime();
     }
 
@@ -56,7 +57,7 @@ public class TrapezoidalProfile {
      * @return the velocity in percent output
      */
     public double get() {
-        return get(mElapsedTime.seconds()) / Constants.kMaxDriveVelocity;
+        return get(mElapsedTime.seconds()) / Constants.kMaxVelocity;
     }
 
     /**
@@ -76,6 +77,6 @@ public class TrapezoidalProfile {
         }
 
         // Deceleration
-        return Math.max(0, mAcceleration * (mCruiseEndTime + mCruiseStartTime - time));
+        return Math.max(Constants.kMinVelocity, mAcceleration * (mCruiseEndTime + mCruiseStartTime - time));
     }
 }

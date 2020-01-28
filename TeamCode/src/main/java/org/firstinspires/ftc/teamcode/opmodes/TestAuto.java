@@ -17,11 +17,13 @@ public class TestAuto extends LinearOpMode {
      */
     @Override
     public void runOpMode() {
-        Robot.init(hardwareMap, telemetry);
+        Robot.init(hardwareMap, telemetry, true);
 
         waitForStart();
 
         TestRoutine.run(this);
+
+        sleep(3000);
     }
 
 }

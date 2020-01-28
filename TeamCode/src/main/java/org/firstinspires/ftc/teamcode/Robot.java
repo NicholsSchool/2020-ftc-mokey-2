@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.sensors.Imu;
@@ -15,7 +16,6 @@ import org.firstinspires.ftc.teamcode.subsystems.Winch;
  * The Robot class contains static references to every subsystem and manages their initializations.
  */
 public class Robot {
-
     public static Telemetry telemetry;
 
     public static Drive drive;
@@ -30,8 +30,10 @@ public class Robot {
     /**
      * Initializes each subsystem and sensor to its default state at the beginning of an OpMode.
      * @param hardwareMap the hardware map of Mokey
+     * @param telemetry the telemetry of the OpMode
+     * @param isAuto if the robot is in autonomous
      */
-    public static void init(HardwareMap hardwareMap, Telemetry telemetry) {
+    public static void init(HardwareMap hardwareMap, Telemetry telemetry, boolean isAuto) {
         Robot.telemetry = telemetry;
 
         drive = new Drive(hardwareMap);
@@ -40,8 +42,19 @@ public class Robot {
         elevator = new Elevator(hardwareMap);
         passthrough = new Passthrough(hardwareMap);
 
-        imu = new Imu(hardwareMap);
-        vision = new Vision();
+        if(isAuto) {
+            imu = new Imu(hardwareMap);
+            vision = new Vision();
+        }
+    }
+
+    /**
+     *Initializes each subsystem and sensor to its default state at the beginning of TeleOp.
+     * @param hardwareMap the hardware map of Mokey
+     * @param telemetry the telemetry of the OpMode
+     */
+    public static void init(HardwareMap hardwareMap, Telemetry telemetry) {
+        init(hardwareMap, telemetry, false);
     }
 
     /**
