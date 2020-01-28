@@ -15,7 +15,7 @@ public class Constants {
     //
 
     // Drive train motion profiling
-    public static final double kMaxVelocity = 3000.0;
+    public static final double kMaxVelocity = 3200.0;
     public static final double kMinVelocity = kMaxVelocity * 0.2;
     public static final double kCruiseVelocity = kMaxVelocity;
     public static final double kAcceleration = kCruiseVelocity;

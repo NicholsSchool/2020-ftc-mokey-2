@@ -103,8 +103,6 @@ public class DriveTeleOp extends OpMode
 
         // Passthrough
         Robot.passthrough.move(gamepad2.right_stick_y);
-
-        Robot.drive.debug();
     }
 
     /*
