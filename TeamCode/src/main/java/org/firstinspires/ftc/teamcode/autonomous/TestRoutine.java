@@ -30,6 +30,8 @@ public class TestRoutine {
         Robot.telemetry.addData("Ticks", ticks);
         Robot.telemetry.update();
         while(Robot.drive.move((int)ticks, tp.get()) && opMode.opModeIsActive()) {
+            Robot.telemetry.addData("Speed", tp.get());
+            Robot.telemetry.update();
         }
         Robot.stop();
 
@@ -40,6 +42,8 @@ public class TestRoutine {
         Robot.telemetry.addData("Ticks", ticks);
         Robot.telemetry.update();
         while(Robot.drive.turn((int)angle, tp.get()) && opMode.opModeIsActive()) {
+            Robot.telemetry.addData("Speed", tp.get());
+            Robot.telemetry.update();
         }
         Robot.stop();
 

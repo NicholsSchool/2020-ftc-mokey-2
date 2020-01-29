@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.Robot;
 /**
  * A driver-controlled OpMode for the TeleOp period.
  */
-@TeleOp(name="Drive")
+@TeleOp(name="DriveTeleOp")
 public class DriveTeleOp extends OpMode
 {
     private double mDriverSpeedMultiplier;

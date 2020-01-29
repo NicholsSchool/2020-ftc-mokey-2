@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.autonomous.TestRoutine;
 /**
  * An auto OpMode for testing.
  */
-@Autonomous(name="Test")
+@Autonomous(name="TestAuto")
 public class TestAuto extends LinearOpMode {
 
     /**

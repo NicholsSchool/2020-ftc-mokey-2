@@ -10,7 +10,7 @@ public class Constants {
     public static final double kWheelDiameter = 3.92;
     public static final double kGearRatio = 5.0/7.0;
     public static final double kTicksPerInch = kTicksPerRotation / (Math.PI * kWheelDiameter) * kGearRatio;
-    public static final double kBaseDiameter = 26.0;
+    public static final double kBaseDiameter = 24.0;
     public static final double kTicksPerDegree = Math.PI * kBaseDiameter / 360.0 * kTicksPerInch;
     //
 
@@ -25,7 +25,7 @@ public class Constants {
 
     // Bang-bang margins
     public static final int kEncoderMargin = 50;
-    public static final int kAngleMargin = 3;
+    public static final int kAngleMargin = 12;
     //
 
     // Subsystem constants
@@ -42,6 +42,6 @@ public class Constants {
     public static final int kBlueScanLineStart = 200;
     public static final int kBlueScanLineEnd = 360;
     public static final int kScanLineY = 710;
-    public static final int kYellowThresh = (kRedScanLineEnd - kRedScanLineStart) * 120;
+    public static final int kYellowThresh = (kRedScanLineEnd - kRedScanLineStart) * 140;
     //
 }
