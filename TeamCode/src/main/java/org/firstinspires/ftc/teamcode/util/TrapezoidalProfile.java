@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.util;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Constants;
-import org.firstinspires.ftc.teamcode.Robot;
 
 /**
  * The TrapezoidalProfile class is a utility class used to calculate trapezoidal motion profiles
@@ -12,6 +11,7 @@ public class TrapezoidalProfile {
 
     private double mCruiseVelocity;
     private double mAcceleration;
+    private double mEndVelocity;
 
     private double mCruiseStartTime;
     private double mCruiseEndTime;
@@ -23,7 +23,7 @@ public class TrapezoidalProfile {
      * @param distance distance in sensor units
      */
     public TrapezoidalProfile(double distance) {
-        this(Constants.kCruiseVelocity, Constants.kAcceleration, distance);
+        this(Constants.kCruiseVelocity, Constants.kAcceleration, Constants.kMinVelocity, Math.abs(distance));
         mElapsedTime = new ElapsedTime();
     }
 
@@ -33,9 +33,10 @@ public class TrapezoidalProfile {
      * @param acceleration the acceleration in sensor units per second per second
      * @param distance the distance in sensor units
      */
-    public TrapezoidalProfile(double cruiseVelocity, double acceleration, double distance) {
+    public TrapezoidalProfile(double cruiseVelocity, double acceleration, double endVelocity, double distance) {
         mCruiseVelocity = cruiseVelocity;
         mAcceleration = acceleration;
+        mEndVelocity = endVelocity;
 
         mCruiseStartTime = cruiseVelocity / acceleration;
         double cruiseStartDistance = cruiseVelocity / 2 * mCruiseStartTime;
@@ -77,6 +78,6 @@ public class TrapezoidalProfile {
         }
 
         // Deceleration
-        return Math.max(Constants.kMinVelocity, mAcceleration * (mCruiseEndTime + mCruiseStartTime - time));
+        return Math.max(mEndVelocity, mAcceleration * (mCruiseEndTime + mCruiseStartTime - time));
     }
 }

@@ -31,78 +31,81 @@ public class SkystoneRoutine {
         }
 
 
-        int ticks = 0;
-        int angle = 0;
+        double ticks = 0;
+        double angle = 0;
         TrapezoidalProfile tp = null;
 
         Robot.drive.resetEncoders();
         switch (skystonePos) {
             case INNER:
-                ticks = (int)(9 * Constants.kTicksPerInch);
+                ticks = 7 * Constants.kTicksPerInch;
                 break;
             case CENTER:
-                ticks = (int)(18 * Constants.kTicksPerInch);
+                ticks = 18 * Constants.kTicksPerInch;
                 break;
             case OUTER:
-                ticks = (int)(26 * Constants.kTicksPerInch);
+                ticks = 26 * Constants.kTicksPerInch;
                 break;
         }
-        while(Robot.drive.move(ticks, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
-
+        tp = new TrapezoidalProfile(ticks);
+        while(Robot.drive.move((int)ticks, tp.get()) && opMode.opModeIsActive()) {
         }
         Robot.stop();
 
         Robot.imu.reset();
-        angle = alliance.equals("Red") ? 25 : -25;
-        while(Robot.drive.turn(angle, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
-
+        angle = alliance.equals("Red") ? 30 : -30;
+        ticks = angle * Constants.kTicksPerDegree;
+        tp = new TrapezoidalProfile(ticks);
+        while(Robot.drive.turn(angle, tp.get()) && opMode.opModeIsActive()) {
         }
         Robot.stop();
 
         Robot.drive.resetEncoders();
         switch (skystonePos) {
             case INNER:
-                ticks = (int)(40 * Constants.kTicksPerInch);
+                ticks = 34 * Constants.kTicksPerInch;
                 break;
             case CENTER:
-                ticks = (int)(29 * Constants.kTicksPerInch);
+                ticks = 29 * Constants.kTicksPerInch;
                 break;
             case OUTER:
-                ticks = (int)(17 * Constants.kTicksPerInch);
+                ticks = 16 * Constants.kTicksPerInch;
                 break;
         }
-        while(Robot.drive.move(ticks, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
+        tp = new TrapezoidalProfile(ticks);
+        while(Robot.drive.move((int)ticks, tp.get()) && opMode.opModeIsActive()) {
             Robot.intake.intake(Constants.kIntakeSpeed);
         }
         Robot.stop();
 
         Robot.drive.resetEncoders();
-        ticks = (int)(-16 * Constants.kTicksPerInch);
-        while(Robot.drive.move(ticks, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
-
+        ticks = -16 * Constants.kTicksPerInch;
+        tp = new TrapezoidalProfile(ticks);
+        while(Robot.drive.move((int)ticks, tp.get()) && opMode.opModeIsActive()) {
         }
         Robot.stop();
 
-        angle = alliance.equals("Red") ? -87 : 87;
-        while(Robot.drive.turn(angle, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
-
+        angle = alliance.equals("Red") ? -90 : 90;
+        ticks = angle * Constants.kTicksPerDegree;
+        tp = new TrapezoidalProfile(ticks);
+        while(Robot.drive.turn(angle, tp.get()) && opMode.opModeIsActive()) {
         }
         Robot.stop();
 
         Robot.drive.resetEncoders();
         switch (skystonePos) {
             case INNER:
-                ticks = (int)(45 * Constants.kTicksPerInch);
+                ticks = 42 * Constants.kTicksPerInch;
                 break;
             case CENTER:
-                ticks = (int)(35 * Constants.kTicksPerInch);
+                ticks = 38 * Constants.kTicksPerInch;
                 break;
             case OUTER:
-                ticks = (int)(30 * Constants.kTicksPerInch);
+                ticks = 30 * Constants.kTicksPerInch;
                 break;
         }
-        while(Robot.drive.move(ticks, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
-
+        tp = new TrapezoidalProfile(ticks);
+        while(Robot.drive.move((int)ticks, tp.get()) && opMode.opModeIsActive()) {
         }
         Robot.stop();
     }

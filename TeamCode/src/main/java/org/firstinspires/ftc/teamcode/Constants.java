@@ -10,13 +10,13 @@ public class Constants {
     public static final double kWheelDiameter = 3.92;
     public static final double kGearRatio = 5.0/7.0;
     public static final double kTicksPerInch = kTicksPerRotation / (Math.PI * kWheelDiameter) * kGearRatio;
-    public static final double kBaseDiameter = 12.0;
-    public static final double kTicksPerDegree = Math.PI * kBaseDiameter / 360.0;
+    public static final double kBaseDiameter = 26.0;
+    public static final double kTicksPerDegree = Math.PI * kBaseDiameter / 360.0 * kTicksPerInch;
     //
 
     // Drive train motion profiling
-    public static final double kMaxVelocity = 3200.0;
-    public static final double kMinVelocity = kMaxVelocity * 0.2;
+    public static final double kMaxVelocity = 3400.0;
+    public static final double kMinVelocity = kMaxVelocity * 0.25;
     public static final double kCruiseVelocity = kMaxVelocity;
     public static final double kAcceleration = kCruiseVelocity;
     //
@@ -25,7 +25,7 @@ public class Constants {
 
     // Bang-bang margins
     public static final int kEncoderMargin = 50;
-    public static final int kAngleMargin = 5;
+    public static final int kAngleMargin = 3;
     //
 
     // Subsystem constants

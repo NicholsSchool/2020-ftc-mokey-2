@@ -20,25 +20,28 @@ public class TestRoutine {
 
         opMode.waitForStart();
 
-        int ticks = 0;
-        int angle = 0;
+        double ticks = 0;
+        double angle = 0;
         TrapezoidalProfile tp = null;
 
         Robot.drive.resetEncoders();
-        ticks = (int)(39 * Constants.kTicksPerInch);
+        ticks = 39 * Constants.kTicksPerInch;
         tp = new TrapezoidalProfile(ticks);
-        while(Robot.drive.move(ticks, tp.get()) && opMode.opModeIsActive()) {
-            Robot.telemetry.addData("Speed", tp.get());
-            Robot.telemetry.update();
+        Robot.telemetry.addData("Ticks", ticks);
+        Robot.telemetry.update();
+        while(Robot.drive.move((int)ticks, tp.get()) && opMode.opModeIsActive()) {
         }
         Robot.stop();
 
-//        Robot.imu.reset();
-//        angle = 90;
-//        while(Robot.drive.turn(angle, Constants.kAutoDriveSpeed) && opMode.opModeIsActive()) {
-//
-//        }
-//        Robot.stop();
+        Robot.imu.reset();
+        angle = 90;
+        ticks = angle * Constants.kTicksPerDegree;
+        tp = new TrapezoidalProfile(ticks);
+        Robot.telemetry.addData("Ticks", ticks);
+        Robot.telemetry.update();
+        while(Robot.drive.turn((int)angle, tp.get()) && opMode.opModeIsActive()) {
+        }
+        Robot.stop();
 
         opMode.sleep(3000);
     }

@@ -71,8 +71,7 @@ public class DriveTeleOp extends OpMode
             double lSpeed = -gamepad1.left_stick_y * mDriverSpeedMultiplier;
             double rSpeed = -gamepad1.right_stick_y * mDriverSpeedMultiplier;
 
-            // Robot.drive.move(lSpeed, rSpeed);
-            Robot.drive.move(0.2, 0.2);
+            Robot.drive.move(lSpeed, rSpeed);
         }
         //
 
