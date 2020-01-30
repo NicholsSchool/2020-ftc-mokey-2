@@ -16,24 +16,24 @@ public class Constants {
 
     // Drive train motion profiling
     public static final double kMaxVelocity = 3400.0;
-    public static final double kMinVelocity = kMaxVelocity * 0.25;
+    public static final double kMinVelocity = kMaxVelocity * 0.2;
     public static final double kCruiseVelocity = kMaxVelocity;
     public static final double kAcceleration = kCruiseVelocity;
     //
 
+    public static final double kTurnNormalizationCoefficient = 1.35;
     public static final double kAutoDriveSpeed = 0.4;
 
     // Bang-bang margins
     public static final int kEncoderMargin = 50;
-    public static final int kAngleMargin = 12;
+    public static final int kAngleMargin = 5;
     //
 
     // Subsystem constants
     public static final double kIntakeSpeed = 1.0;
     public static final double kWinchSpeed = 1.0;
-    public static final double kElevatorUpSpeed = 0.75;
-    public static final double kElevatorDownSpeed = -0.5;
-    public static final double kPassthroughSpeed = 1.0;
+    public static final double kDispenserSpeed = 1.0;
+    public static final int kDispenserPosition = 70;
     //
 
     // Vision

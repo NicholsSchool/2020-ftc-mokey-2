@@ -42,16 +42,19 @@ public class TestTeleOp extends OpMode
      */
     @Override
     public void loop() {
-        // Fast and slow modes for driver
         double speed = 0.25;
         if(gamepad1.dpad_left) {
-            Robot.drive.move(-speed, speed);
+             Robot.drive.move(-speed, speed);
+//            Robot.drive.normalizedTurn(speed);
         } else if(gamepad1.dpad_right) {
-            Robot.drive.move(speed, -speed);
+             Robot.drive.move(speed, -speed);
+//            Robot.drive.normalizedTurn(-speed);
         } else {
             Robot.drive.stop();
         }
         //
+
+        Robot.drive.debug();
     }
 
     /*

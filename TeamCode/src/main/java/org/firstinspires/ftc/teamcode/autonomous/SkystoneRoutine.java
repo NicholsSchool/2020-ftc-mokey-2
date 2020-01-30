@@ -33,12 +33,12 @@ public class SkystoneRoutine {
 
         double ticks = 0;
         double angle = 0;
-        TrapezoidalProfile tp = null;
+        TrapezoidalProfile tp;
 
         Robot.drive.resetEncoders();
         switch (skystonePos) {
             case INNER:
-                ticks = 5 * Constants.kTicksPerInch;
+                ticks = 7 * Constants.kTicksPerInch;
                 break;
             case CENTER:
                 ticks = 18 * Constants.kTicksPerInch;
@@ -53,7 +53,7 @@ public class SkystoneRoutine {
         Robot.stop();
 
         Robot.imu.reset();
-        angle = alliance.equals("Red") ? 35 : -35;
+        angle = alliance.equals("Red") ? 30 : -30;
         ticks = angle * Constants.kTicksPerDegree;
         tp = new TrapezoidalProfile(ticks);
         while(Robot.drive.turn(angle, tp.get()) && opMode.opModeIsActive()) {

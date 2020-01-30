@@ -37,6 +37,13 @@ public class Drive {
         resetEncoders();
     }
 
+    public void setZeroPowerBehavior(DcMotor.ZeroPowerBehavior behavior) {
+        mLFDrive.setZeroPowerBehavior(behavior);
+        mLBDrive.setZeroPowerBehavior(behavior);
+        mRFDrive.setZeroPowerBehavior(behavior);
+        mRBDrive.setZeroPowerBehavior(behavior);
+    }
+
     /**
      * Tank drive.
      * @param lSpeed speed of the left motors, in the range [-1.0, 1.0]
@@ -102,12 +109,28 @@ public class Drive {
         double speed = currentAngle < angle ? power : -power;
 
         if(Math.abs(currentAngle - angle) > Constants.kAngleMargin) {
-            move(-speed, speed);
+            // move(-speed, speed);
+            normalizedTurn(speed);
 
             return true;
         } else {
             return false;
         }
+    }
+
+    public void normalizedTurn(double speed) {
+        mLFDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        mLBDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        mRFDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        mRBDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+//        double rSpeed = speed < 0 ? speed : Math.min(1, speed * Constants.kTurnNormalizationCoefficient);
+//        double lSpeed = speed > 0 ? speed : Math.max(-1, speed * Constants.kTurnNormalizationCoefficient);
+
+        mLFDrive.setPower(-speed * Constants.kTurnNormalizationCoefficient);
+        mLBDrive.setPower(-speed);
+        mRFDrive.setPower(speed * Constants.kTurnNormalizationCoefficient);
+        mRBDrive.setPower(speed);
     }
 
     /**
@@ -131,5 +154,6 @@ public class Drive {
      * Adds debug values to the telemetry.
      */
     public void debug() {
+        Robot.telemetry.addData("Zero power behavior", mLFDrive.getZeroPowerBehavior());
     }
 }

@@ -21,6 +21,9 @@ public class Intake {
 
         mLIntake.resetDeviceConfigurationForOpMode();
         mRIntake.resetDeviceConfigurationForOpMode();
+
+        mLIntake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        mRIntake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     /**

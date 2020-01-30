@@ -7,15 +7,15 @@ import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.util.TrapezoidalProfile;
 
 /**
- * An auto routine used for testing.
+ * An auto routine used for parking.
  */
-public class TestRoutine {
+public class ParkRoutine {
 
     /**
      * Runs the routine.
      * @param opMode the OpMode running the routine
      */
-    public static void run(LinearOpMode opMode) {
+    public static void run(LinearOpMode opMode, String direction) {
         Robot.init(opMode.hardwareMap, opMode.telemetry, true);
 
         opMode.waitForStart();
@@ -25,28 +25,25 @@ public class TestRoutine {
         TrapezoidalProfile tp;
 
         Robot.drive.resetEncoders();
-        ticks = 39 * Constants.kTicksPerInch;
+        ticks = 1 * Constants.kTicksPerInch;
         tp = new TrapezoidalProfile(ticks);
-        Robot.telemetry.addData("Ticks", ticks);
-        Robot.telemetry.update();
         while(Robot.drive.move((int)ticks, tp.get()) && opMode.opModeIsActive()) {
-            Robot.telemetry.addData("Speed", tp.get());
-            Robot.telemetry.update();
         }
         Robot.stop();
 
         Robot.imu.reset();
-        angle = 90;
+        angle = direction.equals("Left") ? 90 : -90;
         ticks = angle * Constants.kTicksPerDegree;
         tp = new TrapezoidalProfile(ticks);
-        Robot.telemetry.addData("Ticks", ticks);
-        Robot.telemetry.update();
         while(Robot.drive.turn((int)angle, tp.get()) && opMode.opModeIsActive()) {
-            Robot.telemetry.addData("Speed", tp.get());
-            Robot.telemetry.update();
         }
         Robot.stop();
 
-        opMode.sleep(3000);
+        Robot.drive.resetEncoders();
+        ticks = 12 * Constants.kTicksPerInch;
+        tp = new TrapezoidalProfile(ticks);
+        while(Robot.drive.move((int)ticks, tp.get()) && opMode.opModeIsActive()) {
+        }
+        Robot.stop();
     }
 }
