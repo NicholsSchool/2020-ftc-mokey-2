@@ -26,6 +26,7 @@ public class SkystoneRoutine {
             Robot.telemetry.addData("Skystone position", pos);
             Robot.telemetry.update();
         }
+        Robot.imu.reset();
 
 
         switch (skystonePos) {
@@ -33,7 +34,7 @@ public class SkystoneRoutine {
                 if(alliance.equals("Red")) Robot.drive.setTargetPosition(7); else Robot.drive.setTargetPosition(6);
                 break;
             case CENTER:
-                if(alliance.equals("Red")) Robot.drive.setTargetPosition(18); else Robot.drive.setTargetPosition(18);
+                if(alliance.equals("Red")) Robot.drive.setTargetPosition(18); else Robot.drive.setTargetPosition(17);
                 break;
             case OUTER:
                 if(alliance.equals("Red")) Robot.drive.setTargetPosition(28); else Robot.drive.setTargetPosition(28);
@@ -42,19 +43,19 @@ public class SkystoneRoutine {
         while(Robot.drive.move() && opMode.opModeIsActive()) { }
 
 
-        if(alliance.equals("Red")) Robot.drive.setTargetAngle(35); else Robot.drive.setTargetAngle(-35);
+        if(alliance.equals("Red")) Robot.drive.setTargetAngle(36); else Robot.drive.setTargetAngle(-36);
         while(Robot.drive.turn() && opMode.opModeIsActive()) { }
 
 
         switch (skystonePos) {
             case INNER:
-                if(alliance.equals("Red")) Robot.drive.setTargetPosition(44); else Robot.drive.setTargetPosition(44);
+                if(alliance.equals("Red")) Robot.drive.setTargetPosition(46); else Robot.drive.setTargetPosition(44);
                 break;
             case CENTER:
                 if(alliance.equals("Red")) Robot.drive.setTargetPosition(31); else Robot.drive.setTargetPosition(31);
                 break;
             case OUTER:
-                if(alliance.equals("Red")) Robot.drive.setTargetPosition(17); else Robot.drive.setTargetPosition(18);
+                if(alliance.equals("Red")) Robot.drive.setTargetPosition(17); else Robot.drive.setTargetPosition(17);
                 break;
         }
         while(Robot.drive.move() && opMode.opModeIsActive()) {
@@ -63,11 +64,11 @@ public class SkystoneRoutine {
         Robot.intake.stop();
 
 
-        if(alliance.equals("Red")) Robot.drive.setTargetPosition(-19); else Robot.drive.setTargetPosition(-17);
+        if(alliance.equals("Red")) Robot.drive.setTargetPosition(-20); else Robot.drive.setTargetPosition(-17);
         while(Robot.drive.move() && opMode.opModeIsActive()) { }
 
 
-        if(alliance.equals("Red")) Robot.drive.setTargetAngle(-93); else Robot.drive.setTargetAngle(90);
+        if(alliance.equals("Red")) Robot.drive.setTargetAngle(-94); else Robot.drive.setTargetAngle(90);
         while(Robot.drive.turn() && opMode.opModeIsActive()) { }
 
 
@@ -116,7 +117,7 @@ public class SkystoneRoutine {
         while(Robot.drive.move() && opMode.opModeIsActive()) { }
 
 
-        if(alliance.equals("Red")) Robot.drive.setTargetAngle(-91); else Robot.drive.setTargetAngle(89);
+        if(alliance.equals("Red")) Robot.drive.setTargetAngle(-93); else Robot.drive.setTargetAngle(89);
         while(Robot.drive.turn() && opMode.opModeIsActive()) { }
 
 

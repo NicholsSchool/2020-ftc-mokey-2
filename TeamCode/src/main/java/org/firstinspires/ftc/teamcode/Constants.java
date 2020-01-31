@@ -34,11 +34,11 @@ public class Constants {
     //
 
     // Vision
-    public static final int kRedScanLineStart = 1111;
-    public static final int kRedScanLineEnd = 1279;
-    public static final int kBlueScanLineStart = 196;
-    public static final int kBlueScanLineEnd = 364;
+    public static final int kRedScanLineStart = 1110;
+    public static final int kRedScanLineEnd = 1280;
+    public static final int kBlueScanLineStart = 195;
+    public static final int kBlueScanLineEnd = 365;
     public static final int kScanLineY = 710;
-    public static final int kYellowThresh = (kRedScanLineEnd - kRedScanLineStart) * 150;
+    public static final int kYellowThresh = (kRedScanLineEnd - kRedScanLineStart) * 140;
     //
 }
