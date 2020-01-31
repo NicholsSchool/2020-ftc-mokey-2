@@ -133,9 +133,9 @@ public class Drive {
      * @param angle the angle in degrees
      */
     public void setTargetAngle(double angle) {
-        Robot.imu.reset();
         mTargetAngle = angle;
-        setTargetPosition(angle * Constants.kInchesPerDegree);
+        double position = (Robot.imu.getOrientation() - mTargetAngle) * Constants.kInchesPerDegree;
+        setTargetPosition(position);
     }
 
 

@@ -18,7 +18,7 @@ public class ParkRoutine {
         opMode.waitForStart();
 
 
-        Robot.drive.setTargetPosition(2);
+        Robot.drive.setTargetPosition(3);
         while(Robot.drive.move() && opMode.opModeIsActive()) { }
 
 
@@ -29,6 +29,9 @@ public class ParkRoutine {
         Robot.drive.setTargetPosition(18);
         while(Robot.drive.move() && opMode.opModeIsActive()) { }
 
+
+        if(direction.equals("Left")) Robot.drive.strafe(0.3); else Robot.drive.setTargetAngle(-0.3);;
+        opMode.sleep(2000);
 
         Robot.stop();
     }
