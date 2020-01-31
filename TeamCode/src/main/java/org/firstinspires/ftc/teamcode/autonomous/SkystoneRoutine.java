@@ -5,7 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.util.SkystonePosition;
-import org.firstinspires.ftc.teamcode.util.TrapezoidalProfile;
 
 /**
  * An auto routine used for grabbing a Skystone from starting position.
@@ -18,9 +17,7 @@ public class SkystoneRoutine {
      */
     public static void run(LinearOpMode opMode, String alliance) {
         Robot.init(opMode.hardwareMap, opMode.telemetry, true);
-
         SkystonePosition skystonePos = SkystonePosition.OUTER;
-
         while(!opMode.isStarted()) {
             SkystonePosition pos = Robot.vision.getSkystonePosition(alliance);
             if(pos != SkystonePosition.UNKNOWN) {
@@ -31,84 +28,70 @@ public class SkystoneRoutine {
         }
 
 
-        double ticks = 0;
-        double angle = 0;
-        TrapezoidalProfile tp;
-
-        Robot.drive.resetEncoders();
         switch (skystonePos) {
             case INNER:
-                ticks = 7 * Constants.kTicksPerInch;
+                if(alliance.equals("Red")) Robot.drive.setTargetPosition(5); else Robot.drive.setTargetPosition(5);
                 break;
             case CENTER:
-                ticks = 18 * Constants.kTicksPerInch;
+                if(alliance.equals("Red")) Robot.drive.setTargetPosition(18); else Robot.drive.setTargetPosition(18);
                 break;
             case OUTER:
-                ticks = 26 * Constants.kTicksPerInch;
+                if(alliance.equals("Red")) Robot.drive.setTargetPosition(26); else Robot.drive.setTargetPosition(26);
                 break;
         }
-        tp = new TrapezoidalProfile(ticks);
-        while(Robot.drive.move((int)ticks, tp.get()) && opMode.opModeIsActive()) {
-        }
-        Robot.stop();
+        while(Robot.drive.move() && opMode.opModeIsActive()) { }
 
-        Robot.imu.reset();
-        angle = alliance.equals("Red") ? 30 : -30;
-        ticks = angle * Constants.kTicksPerDegree;
-        tp = new TrapezoidalProfile(ticks);
-        while(Robot.drive.turn(angle, tp.get()) && opMode.opModeIsActive()) {
-        }
-        Robot.stop();
 
-        Robot.drive.resetEncoders();
+        if(alliance.equals("Red")) Robot.drive.setTargetAngle(30); else Robot.drive.setTargetAngle(-30);
+        while(Robot.drive.turn() && opMode.opModeIsActive()) { }
+
+
         switch (skystonePos) {
             case INNER:
-                ticks = 42 * Constants.kTicksPerInch;
+                if(alliance.equals("Red")) Robot.drive.setTargetPosition(48); else Robot.drive.setTargetPosition(48);
                 break;
             case CENTER:
-                ticks = 28 * Constants.kTicksPerInch;
+                if(alliance.equals("Red")) Robot.drive.setTargetPosition(31); else Robot.drive.setTargetPosition(31);
                 break;
             case OUTER:
-                ticks = 17 * Constants.kTicksPerInch;
+                if(alliance.equals("Red")) Robot.drive.setTargetPosition(19); else Robot.drive.setTargetPosition(19);
                 break;
         }
-        tp = new TrapezoidalProfile(ticks);
-        while(Robot.drive.move((int)ticks, tp.get()) && opMode.opModeIsActive()) {
+        while(Robot.drive.move() && opMode.opModeIsActive()) {
             Robot.intake.intake(Constants.kIntakeSpeed);
         }
         Robot.stop();
 
-        Robot.drive.resetEncoders();
-        ticks = -17 * Constants.kTicksPerInch;
-        tp = new TrapezoidalProfile(ticks);
-        while(Robot.drive.move((int)ticks, tp.get()) && opMode.opModeIsActive()) {
-        }
-        Robot.stop();
 
-        angle = alliance.equals("Red") ? -90 : 90;
-        ticks = angle * Constants.kTicksPerDegree;
-        tp = new TrapezoidalProfile(ticks);
-        while(Robot.drive.turn(angle, tp.get()) && opMode.opModeIsActive()) {
-        }
-        Robot.stop();
+        Robot.drive.setTargetPosition(-17);
+        while(Robot.drive.move() && opMode.opModeIsActive()) { }
 
-        Robot.drive.resetEncoders();
+
+        if(alliance.equals("Red")) Robot.drive.setTargetAngle(-120); else Robot.drive.setTargetAngle(120);
+        while(Robot.drive.turn() && opMode.opModeIsActive()) { }
+
+
         switch (skystonePos) {
             case INNER:
-                ticks = 42 * Constants.kTicksPerInch;
+                if(alliance.equals("Red")) Robot.drive.setTargetPosition(45); else Robot.drive.setTargetPosition(45);
                 break;
             case CENTER:
-                ticks = 38 * Constants.kTicksPerInch;
+                if(alliance.equals("Red")) Robot.drive.setTargetPosition(38); else Robot.drive.setTargetPosition(38);
                 break;
             case OUTER:
-                ticks = 30 * Constants.kTicksPerInch;
+                if(alliance.equals("Red")) Robot.drive.setTargetPosition(30); else Robot.drive.setTargetPosition(30);
                 break;
         }
-        tp = new TrapezoidalProfile(ticks);
-        while(Robot.drive.move((int)ticks, tp.get()) && opMode.opModeIsActive()) {
+        while(Robot.drive.move() && opMode.opModeIsActive()) { }
+
+
+        Robot.drive.setTargetPosition(-12);
+        while(Robot.drive.move() && opMode.opModeIsActive()) {
+            Robot.intake.intake(-Constants.kIntakeSpeed);
         }
         Robot.stop();
 
-        opMode.sleep(1000);
+
+        Robot.stop();
     }
 }

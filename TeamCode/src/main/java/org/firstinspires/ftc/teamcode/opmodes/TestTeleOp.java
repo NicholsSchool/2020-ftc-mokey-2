@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Robot;
 
@@ -18,6 +19,7 @@ public class TestTeleOp extends OpMode
     @Override
     public void init() {
         Robot.init(hardwareMap, telemetry);
+        Robot.drive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         telemetry.addData("Status", "Initialized");
     }
@@ -44,11 +46,9 @@ public class TestTeleOp extends OpMode
     public void loop() {
         double speed = 0.25;
         if(gamepad1.dpad_left) {
-             Robot.drive.move(-speed, speed);
-//            Robot.drive.normalizedTurn(speed);
+//             Robot.drive.move(-speed, speed);
         } else if(gamepad1.dpad_right) {
-             Robot.drive.move(speed, -speed);
-//            Robot.drive.normalizedTurn(-speed);
+//             Robot.drive.move(speed, -speed);
         } else {
             Robot.drive.stop();
         }

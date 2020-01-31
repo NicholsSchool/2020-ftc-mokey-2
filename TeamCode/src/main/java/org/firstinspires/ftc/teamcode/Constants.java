@@ -11,22 +11,19 @@ public class Constants {
     public static final double kGearRatio = 5.0/7.0;
     public static final double kTicksPerInch = kTicksPerRotation / (Math.PI * kWheelDiameter) * kGearRatio;
     public static final double kBaseDiameter = 24.0;
-    public static final double kTicksPerDegree = Math.PI * kBaseDiameter / 360.0 * kTicksPerInch;
+    public static final double kInchesPerDegree = Math.PI * kBaseDiameter / 360.0;
     //
 
     // Drive train motion profiling
     public static final double kMaxVelocity = 3400.0;
-    public static final double kMinVelocity = kMaxVelocity * 0.2;
+    public static final double kMinVelocity = kMaxVelocity * 0.25;
     public static final double kCruiseVelocity = kMaxVelocity;
     public static final double kAcceleration = kCruiseVelocity;
     //
 
-    public static final double kTurnNormalizationCoefficient = 1.35;
-    public static final double kAutoDriveSpeed = 0.4;
-
     // Bang-bang margins
     public static final int kEncoderMargin = 50;
-    public static final int kAngleMargin = 5;
+    public static final int kAngleMargin = 7;
     //
 
     // Subsystem constants
@@ -42,6 +39,6 @@ public class Constants {
     public static final int kBlueScanLineStart = 200;
     public static final int kBlueScanLineEnd = 360;
     public static final int kScanLineY = 710;
-    public static final int kYellowThresh = (kRedScanLineEnd - kRedScanLineStart) * 140;
+    public static final int kYellowThresh = (kRedScanLineEnd - kRedScanLineStart) * 150;
     //
 }

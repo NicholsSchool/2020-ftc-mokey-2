@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.util.TrapezoidalProfile;
 
 /**
  * Drive controls the drive train subsystem of Mokey.
@@ -15,6 +16,10 @@ public class Drive {
     private DcMotor mLBDrive;
     private DcMotor mRFDrive;
     private DcMotor mRBDrive;
+
+    private TrapezoidalProfile mProfile;
+    private double mTargetPosition;
+    private double mTargetAngle;
 
     /**
      * Creates a drive train with the default state at the beginning of an OpMode.
@@ -78,60 +83,61 @@ public class Drive {
     }
 
     /**
-     * Drives straight to a position with encoders.
-     * @param position the target encoder position
-     * @param power the power of the motors, in the range [0.0, 1.0]
+     * Drives to the set target position with encoders.
      * @return true if the robot is still moving towards the target, false if the robot is at the target
      */
-    public boolean move(int position, double power) {
+    public boolean move() {
         int currentPosition = mLFDrive.getCurrentPosition();
 
-        double speed = currentPosition < position ? power : -power;
+        double speed = currentPosition < mTargetPosition ? mProfile.get() : -mProfile.get();
 
-        if(Math.abs(currentPosition - position) > Constants.kEncoderMargin) {
+        if(Math.abs(currentPosition - mTargetPosition) > Constants.kEncoderMargin) {
             move(speed, speed);
-
             return true;
         } else {
+            stop();
             return false;
         }
     }
 
     /**
-     * Turns in place to a position with the IMU.
-     * @param angle the target angle, positive is counterclockwise
-     * @param power the power of the motors, in the range [0.0, 1.0]
+     * Turns in place to the set target orientation with the IMU.
      * @return true if the robot is still moving towards the target, false if the robot is at the target
      */
-    public boolean turn(double angle, double power) {
+    public boolean turn() {
         double currentAngle = Robot.imu.getOrientation();
 
-        double speed = currentAngle < angle ? power : -power;
+        double speed = currentAngle < mTargetAngle ? mProfile.get() : -mProfile.get();
 
-        if(Math.abs(currentAngle - angle) > Constants.kAngleMargin) {
-            // move(-speed, speed);
-            normalizedTurn(speed);
-
+        if(Math.abs(currentAngle - mTargetAngle) > Constants.kAngleMargin) {
+            move(-speed, speed);
             return true;
         } else {
+            stop();
             return false;
         }
     }
 
-    public void normalizedTurn(double speed) {
-        mLFDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        mLBDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        mRFDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        mRBDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-//        double rSpeed = speed < 0 ? speed : Math.min(1, speed * Constants.kTurnNormalizationCoefficient);
-//        double lSpeed = speed > 0 ? speed : Math.max(-1, speed * Constants.kTurnNormalizationCoefficient);
-
-        mLFDrive.setPower(-speed * Constants.kTurnNormalizationCoefficient);
-        mLBDrive.setPower(-speed);
-        mRFDrive.setPower(speed * Constants.kTurnNormalizationCoefficient);
-        mRBDrive.setPower(speed);
+    /**
+     * Sets the closed loop target position and resets the encoders.
+     * @param position the position in inches
+     */
+    public void setTargetPosition(double position) {
+        resetEncoders();
+        mTargetPosition = position * Constants.kTicksPerInch;
+        mProfile = new TrapezoidalProfile(mTargetPosition);
     }
+
+    /**
+     * Sets the closed loop target orientation and resets the imu.
+     * @param angle the angle in degrees
+     */
+    public void setTargetAngle(double angle) {
+        Robot.imu.reset();
+        mTargetAngle = angle;
+        setTargetPosition(angle * Constants.kInchesPerDegree);
+    }
+
 
     /**
      * Resets the drive encoders.
