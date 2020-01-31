@@ -60,7 +60,7 @@ public class SkystoneRoutine {
         while(Robot.drive.move() && opMode.opModeIsActive()) {
             Robot.intake.intake(Constants.kIntakeSpeed);
         }
-        Robot.stop();
+        Robot.intake.stop();
 
 
         Robot.drive.setTargetPosition(-17);
@@ -89,7 +89,7 @@ public class SkystoneRoutine {
         while(Robot.drive.move() && opMode.opModeIsActive()) {
             Robot.intake.intake(-Constants.kIntakeSpeed);
         }
-        Robot.stop();
+        Robot.intake.stop();
 
 
         Robot.stop();
