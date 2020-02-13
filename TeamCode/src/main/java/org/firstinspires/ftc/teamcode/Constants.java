@@ -1,5 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.roadrunner.control.PIDCoefficients;
+import com.acmerobotics.roadrunner.trajectory.constraints.DriveConstraints;
+import com.acmerobotics.roadrunner.trajectory.constraints.MecanumConstraints;
+import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+
 /**
  * The Constants class defines static constants for various robot operations.
  */
@@ -40,5 +45,19 @@ public class Constants {
     public static final int kBlueScanLineEnd = 365;
     public static final int kScanLineY = 710;
     public static final int kYellowThresh = (kRedScanLineEnd - kRedScanLineStart) * 140;
+    //
+
+    // Trajectory
+    public static final double kV = 1.0 / kMaxVelocity;
+    public static final double kA = 0;
+    public static final double kStatic = 0;
+    public static final double kTrackWidth = 12.0;
+
+    public static final DriveConstraints kBaseConstraints = new DriveConstraints(30, 30, 0, Math.PI, Math.PI, 0);
+    public static final MecanumConstraints kConstraints = new MecanumConstraints(kBaseConstraints, kTrackWidth);
+
+    public static final PIDCoefficients kTranslationalPID = new PIDCoefficients(0, 0, 0);
+    public static final PIDCoefficients kHeadingPID = new PIDCoefficients(0, 0, 0);
+    public static final PIDFCoefficients kMotorPIDF = null;
     //
 }

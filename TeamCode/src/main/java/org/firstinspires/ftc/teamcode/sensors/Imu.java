@@ -23,6 +23,8 @@ public class Imu {
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         mImu.initialize(parameters);
+
+        reset();
     }
 
     /**

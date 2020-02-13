@@ -16,7 +16,7 @@ public class SkystoneRoutine {
      * @param opMode the OpMode running the routine
      */
     public static void run(LinearOpMode opMode, String alliance) {
-        Robot.init(opMode.hardwareMap, opMode.telemetry, true);
+        Robot.initAuto(opMode.hardwareMap, opMode.telemetry);
         SkystonePosition skystonePos = SkystonePosition.OUTER;
         while(!opMode.isStarted()) {
             SkystonePosition pos = Robot.vision.getSkystonePosition(alliance);

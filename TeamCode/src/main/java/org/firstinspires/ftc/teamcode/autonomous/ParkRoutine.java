@@ -14,7 +14,7 @@ public class ParkRoutine {
      * @param opMode the OpMode running the routine
      */
     public static void run(LinearOpMode opMode, String direction) {
-        Robot.init(opMode.hardwareMap, opMode.telemetry, true);
+        Robot.initAuto(opMode.hardwareMap, opMode.telemetry);
         opMode.waitForStart();
 
 

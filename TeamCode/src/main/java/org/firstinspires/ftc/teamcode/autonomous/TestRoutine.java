@@ -1,10 +1,9 @@
 package org.firstinspires.ftc.teamcode.autonomous;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
-import org.firstinspires.ftc.teamcode.util.TrapezoidalProfile;
 
 /**
  * An auto routine used for testing.
@@ -16,19 +15,18 @@ public class TestRoutine {
      * @param opMode the OpMode running the routine
      */
     public static void run(LinearOpMode opMode) {
-        Robot.init(opMode.hardwareMap, opMode.telemetry, true);
+        Robot.initAuto(opMode.hardwareMap, opMode.telemetry);
         opMode.waitForStart();
+        if(opMode.isStopRequested()) {
+            return;
+        }
 
+        Robot.driveEx.followTrajectorySync(
+                Robot.driveEx.getTrajectoryBuilder()
+                        .splineTo(new Pose2d(20, 0, 0))
+                        .build()
+        );
 
-        Robot.drive.setTargetPosition(39);
-        while(Robot.drive.move() && opMode.opModeIsActive()) { }
-
-
-        Robot.drive.setTargetAngle(90);
-        while(Robot.drive.turn() && opMode.opModeIsActive()) { }
-
-
-        Robot.stop();
-        opMode.sleep(3000);
+        opMode.sleep(2000);
     }
 }
